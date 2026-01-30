@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://bqtsjd3dqqbox"]
+
+[ext_resource type="Script" uid="uid://bptpnocn21ms4" path="res://scripts/player/player_movement.gd" id="1_5neua"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jk4q1"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_5neua"]
+sky_material = SubResource("ProceduralSkyMaterial_jk4q1")
+
+[sub_resource type="Environment" id="Environment_yjf0v"]
+background_mode = 2
+sky = SubResource("Sky_5neua")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ep40k"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jk4q1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5neua"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jk4q1"]
+
+[node name="Dev World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yjf0v")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1372728, -4.8)
+use_collision = true
+mesh = SubResource("BoxMesh_ep40k")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1372728, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_jk4q1")
+
+[node name="Collider" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_5neua")
+
+[node name="CameraHolder" type="Node3D" parent="Player"]
+
+[node name="Camera" type="Camera3D" parent="Player/CameraHolder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6581938, -0.12165213)
+
+[node name="PlayerMovement" type="Node" parent="Player" node_paths=PackedStringArray("character_body", "head", "camera")]
+script = ExtResource("1_5neua")
+character_body = NodePath("..")
+head = NodePath("../CameraHolder")
+camera = NodePath("../CameraHolder/Camera")
+current_speed = 7.435
+acceleration = 1.25
+metadata/_custom_type_script = "uid://bptpnocn21ms4"
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(78.75, 0, 0, 0, 1, 0, 0, 0, 127.5, 0, -0.7, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_jk4q1")
