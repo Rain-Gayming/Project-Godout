@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://7ffhab8l7j8l"]
+
+[ext_resource type="Script" uid="uid://bfi0icp87ihso" path="res://scripts/ui/ammo_check_ui.gd" id="1_tqtuy"]
+
+[node name="UiAmmoCheck" type="Control" node_paths=PackedStringArray("ammo_type_label", "ammo_amount_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tqtuy")
+ammo_type_label = NodePath("Control/Background/Foreground/Ammo Type Label")
+ammo_amount_label = NodePath("Control/Background/Foreground/Ammo Amount Label")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 135.0
+offset_top = -258.0
+offset_right = 357.0
+offset_bottom = -177.0
+grow_vertical = 0
+
+[node name="Background" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.22352941, 0.047058824, 0.023529412, 1)
+
+[node name="Foreground" type="ColorRect" parent="Control/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.56078434, 0.105882354, 0.08235294, 1)
+
+[node name="Ammo Type Label" type="RichTextLabel" parent="Control/Background/Foreground"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.5
+offset_right = 192.0
+offset_bottom = 28.5
+text = "5.56mm AP"
+
+[node name="Ammo Amount Label" type="RichTextLabel" parent="Control/Background/Foreground"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 0
+offset_left = 23.0
+offset_top = 23.0
+offset_right = 203.0
+offset_bottom = 48.0
+text = "Half empty"

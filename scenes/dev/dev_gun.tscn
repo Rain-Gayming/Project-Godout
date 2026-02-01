@@ -1,0 +1,189 @@
+[gd_scene load_steps=16 format=3 uid="uid://xksk8qn3xsfs"]
+
+[ext_resource type="Script" uid="uid://besglfwefep8j" path="res://scripts/weapons/gun.gd" id="1_t52eb"]
+[ext_resource type="Material" uid="uid://cofltt846pq7w" path="res://assets/materials/sm_colour_black.tres" id="1_w6ub3"]
+[ext_resource type="PackedScene" uid="uid://mxtrp2wcavxs" path="res://scenes/dev/dev_bullet.tscn" id="2_k2o87"]
+[ext_resource type="Material" uid="uid://vq3xnu7uxb1t" path="res://assets/materials/sm_colour_green.tres" id="2_t52eb"]
+[ext_resource type="Resource" uid="uid://bjooxjl3hp548" path="res://resources/guns/gun_rifle_m4a1.tres" id="3_150sv"]
+[ext_resource type="Resource" uid="uid://dkd26uc1rw0ld" path="res://resources/ammo/bullet_5.56x45mm_nato.tres" id="4_d618e"]
+[ext_resource type="Shader" uid="uid://cvm46jjye1eoc" path="res://shaders/pip_shader.gdshader" id="5_d618e"]
+[ext_resource type="Texture2D" uid="uid://c2u336bug73h0" path="res://test.png" id="6_ljg8s"]
+[ext_resource type="PackedScene" uid="uid://didp8j48q1yk2" path="res://assets/models/low_poly_m4_rifle.glb" id="9_vkkeb"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ljg8s"]
+viewport_path = NodePath("Mesh/Rear Sight/Rear Sight3/ScopeView")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vkkeb"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_d618e")
+shader_parameter/reticle_texture = ExtResource("6_ljg8s")
+shader_parameter/scope_texture = SubResource("ViewportTexture_ljg8s")
+shader_parameter/scope_radius = 0.025
+shader_parameter/scope_inner_radius = 1.0
+shader_parameter/scope_depth = 2.0
+shader_parameter/scope_fade_size = 0.05
+shader_parameter/scope_parallax_factor = 0.1
+shader_parameter/lens_bevel_start = 0.78
+shader_parameter/lens_curvature = 0.03
+shader_parameter/eyebox_position = 0.15
+shader_parameter/eyebox_tolerance = 5.325
+shader_parameter/eyebox_fade_distance = 0.05
+shader_parameter/shadow_enabled = 1.0
+shader_parameter/shadow_inner_radius = 1.0
+shader_parameter/shadow_fade_factor = 0.2
+shader_parameter/shadow_movement_factor = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_d618e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7qn62"]
+material = ExtResource("1_w6ub3")
+
+[sub_resource type="BoxMesh" id="BoxMesh_k2o87"]
+material = ExtResource("1_w6ub3")
+
+[sub_resource type="BoxMesh" id="BoxMesh_xocri"]
+material = ExtResource("1_w6ub3")
+
+[node name="Dev Gun" type="Node3D" node_paths=PackedStringArray("muzzle_point", "ammo_check_timer", "ammo_check_delay_timer", "ammo_check_fade_timer")]
+script = ExtResource("1_t52eb")
+muzzle_point = NodePath("Muzzle Point")
+bullet_scene = ExtResource("2_k2o87")
+gun_info = ExtResource("3_150sv")
+bullet_info = ExtResource("4_d618e")
+ammo_amount = 1
+ammo_check_timer = NodePath("Timers/Ammo Check Timer")
+ammo_check_delay_timer = NodePath("Timers/Ammo Check Delay Timer")
+ammo_check_fade_timer = NodePath("Timers/Ammo Check Fade Timer")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.8318665e-09, -2.7975284e-09, 0.064, -1.5258792e-08, 0.064, 2.7975298e-09, -0.064, -1.5258792e-08, 4.831866e-09, 0.13714138, 0.16417913, 0.010394877)
+material_override = SubResource("ShaderMaterial_vkkeb")
+mesh = SubResource("QuadMesh_d618e")
+skeleton = NodePath("")
+
+[node name="Mesh" type="Node3D" parent="."]
+visible = false
+
+[node name="Barrel" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(0.35933417, 0, 0, 0, 0.056985557, 0, 0, 0, 0.066091694, -0.6452553, 0.02188889, 0)
+mesh = SubResource("BoxMesh_7qn62")
+
+[node name="Trigger" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(-0.04964113, 0.0300861, 0, -0.0770191, -0.019391406, 0, 0, 0, 0.031606477, 0.33813858, -0.09284463, 0)
+mesh = SubResource("BoxMesh_7qn62")
+
+[node name="Reciever2" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 0.117676996, 0, 0, 0, 0.11248902, 0, 0, 0)
+material_override = ExtResource("1_w6ub3")
+mesh = SubResource("BoxMesh_7qn62")
+
+[node name="Stock" type="Node3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -0.1, 0)
+
+[node name="Stock3" type="MeshInstance3D" parent="Mesh/Stock"]
+transform = Transform3D(-1.1471342e-08, 0.14842898, 0, -0.26243377, -6.488037e-09, 0, 0, 0, 0.11248904, 0.03697592, -0.03748765, 0)
+mesh = SubResource("BoxMesh_7qn62")
+skeleton = NodePath("../..")
+
+[node name="Stock2" type="MeshInstance3D" parent="Mesh/Stock"]
+transform = Transform3D(0.13121687, 0.12854326, 0, -0.22727428, 0.07421447, 0, 0, 0, 0.11248904, -0.034341216, -0.020799182, 0)
+mesh = SubResource("BoxMesh_7qn62")
+skeleton = NodePath("../..")
+
+[node name="Stock" type="MeshInstance3D" parent="Mesh/Stock"]
+transform = Transform3D(0.4242953, 0, 0, 0, 0.09215538, 0, 0, 0, 0.11248902, -0.099999964, 0.1, 0)
+mesh = SubResource("BoxMesh_7qn62")
+skeleton = NodePath("../..")
+
+[node name="Hand Guard" type="Node3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4090013, -0.1095912, 0)
+
+[node name="Hand Guard" type="MeshInstance3D" parent="Mesh/Hand Guard"]
+transform = Transform3D(-1.7770333e-08, 0.10929546, 0, -0.40653792, -4.7774567e-09, 0, 0, 0, 0.062137373, 0.0048439205, -0.08410376, 0)
+mesh = SubResource("BoxMesh_7qn62")
+skeleton = NodePath("../..")
+
+[node name="Hand Guard2" type="MeshInstance3D" parent="Mesh/Hand Guard"]
+transform = Transform3D(0.2412237, 0.025245897, 0, -0.21289189, 0.028605644, 0, 0, 0, 0.036783528, -0.119876236, -0.039294377, 0)
+mesh = SubResource("BoxMesh_7qn62")
+skeleton = NodePath("../..")
+
+[node name="Rear Sight" type="Node3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46230897, 0.075321466, 0)
+
+[node name="Rear Sight3" type="MeshInstance3D" parent="Mesh/Rear Sight"]
+transform = Transform3D(-3.6236758e-09, 0.057131607, 0, 3.6236774e-09, 1.09160544e-16, 0.028833864, 0.08290006, 2.497302e-09, -1.260368e-09, 0.0017685294, -0.022924319, 0.0012932047)
+mesh = SubResource("BoxMesh_7qn62")
+skeleton = NodePath("../..")
+
+[node name="ReticleView" type="SubViewport" parent="Mesh/Rear Sight/Rear Sight3"]
+transparent_bg = true
+
+[node name="ScopeView" type="SubViewport" parent="Mesh/Rear Sight/Rear Sight3"]
+
+[node name="Camera3D" type="Camera3D" parent="Mesh/Rear Sight/Rear Sight3/ScopeView"]
+transform = Transform3D(-1.03403e-09, -2.4973028e-09, 0.057131622, -7.916246e-09, 0.028833885, 1.2603693e-09, -0.08290015, -1.30385205e-08, -4.2612047e-09, -0.08672294, 0.16836414, 0.0012932047)
+fov = 3.8311298
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Mesh/Rear Sight/Rear Sight3"]
+transform = Transform3D(-1.0000011, -1.4207652e-07, -8.152596e-08, -8.1525975e-08, -4.3711413e-08, 1.0000002, -1.4887235e-07, 1.0000007, 4.371143e-08, 3.511086e-07, -9.640905, 4.0219026)
+remote_path = NodePath("../ScopeView/Camera3D")
+
+[node name="Rear Sight" type="MeshInstance3D" parent="Mesh/Rear Sight"]
+transform = Transform3D(-7.840173e-10, 0.04683538, 0, 7.8401763e-10, 8.9487694e-17, 0.028833864, 0.01793623, 2.0472397e-09, -1.260368e-09, 0.0017685294, 0.0001790449, -0.029361777)
+mesh = SubResource("BoxMesh_k2o87")
+skeleton = NodePath("../..")
+
+[node name="Rear Sight2" type="MeshInstance3D" parent="Mesh/Rear Sight"]
+transform = Transform3D(-7.840173e-10, 0.04683538, 0, 7.8401763e-10, 8.9487694e-17, 0.028833864, 0.01793623, 2.0472397e-09, -1.260368e-09, 0.0017685294, 0.0001790449, 0.03322176)
+mesh = SubResource("BoxMesh_k2o87")
+skeleton = NodePath("../..")
+
+[node name="Mag" type="Node3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018867478, -0.083256274, 0)
+
+[node name="Mag" type="MeshInstance3D" parent="Mesh/Mag"]
+transform = Transform3D(-1.3717506e-08, 0.11521242, 0, -0.31382003, -5.036095e-09, 0, 0, 0, 0.062137373, 0.004672684, -0.06627004, 0)
+mesh = SubResource("BoxMesh_7qn62")
+skeleton = NodePath("../..")
+
+[node name="Mag2" type="MeshInstance3D" parent="Mesh/Mag"]
+transform = Transform3D(-0.054308053, 0.11128665, 0, -0.20268041, -0.029819177, 0, 0, 0, 0.062137373, -0.024656072, -0.23614392, 0)
+mesh = SubResource("BoxMesh_7qn62")
+skeleton = NodePath("../..")
+
+[node name="Front Sight" type="Node3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44543505, 0.075704135, 0)
+
+[node name="Front Sight" type="MeshInstance3D" parent="Mesh/Front Sight"]
+transform = Transform3D(-3.6236758e-09, 0.057131607, 0, 3.6236774e-09, 1.09160544e-16, 0.028833864, 0.08290006, 2.497302e-09, -1.260368e-09, 0.009512544, -0.023306988, 0.0012932047)
+mesh = SubResource("BoxMesh_7qn62")
+skeleton = NodePath("../..")
+
+[node name="Front Sight2" type="MeshInstance3D" parent="Mesh/Front Sight"]
+transform = Transform3D(-7.840173e-10, 0.04211613, 0, 7.8401763e-10, 8.047069e-17, 0.019066341, 0.01793623, 1.8409546e-09, -8.334161e-10, 0.009512514, -0.0034954697, 0.0031937882)
+material_override = ExtResource("2_t52eb")
+mesh = SubResource("BoxMesh_xocri")
+skeleton = NodePath("../..")
+
+[node name="Muzzle Point" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8455183, 0.021213487, 0)
+
+[node name="Timers" type="Node3D" parent="."]
+
+[node name="Ammo Check Timer" type="Timer" parent="Timers"]
+wait_time = 2.0
+
+[node name="Ammo Check Delay Timer" type="Timer" parent="Timers"]
+wait_time = 0.25
+
+[node name="Ammo Check Fade Timer" type="Timer" parent="Timers"]
+wait_time = 2.5
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("9_vkkeb")]
+transform = Transform3D(-2.6663947e-08, 0, 0.61, 0, 0.61, 0, -0.61, 0, -2.6663947e-08, -0.23320782, -0.13990799, 0.009557486)
+
+[connection signal="timeout" from="Timers/Ammo Check Timer" to="." method="_ammo_check_timer_timeout"]
+[connection signal="timeout" from="Timers/Ammo Check Delay Timer" to="." method="_ammo_check_timer_delay_timeout"]
+[connection signal="timeout" from="Timers/Ammo Check Fade Timer" to="." method="_ammo_check_fade_timer_timeout"]

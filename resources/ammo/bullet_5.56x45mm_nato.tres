@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BulletInfo" load_steps=2 format=3 uid="uid://dkd26uc1rw0ld"]
+
+[ext_resource type="Script" uid="uid://rudu2ng5205a" path="res://scripts/weapons/bullet_info.gd" id="1_fb2ri"]
+
+[resource]
+script = ExtResource("1_fb2ri")
+weight = 0.012
+base_velocity = 945.0
+metadata/_custom_type_script = "uid://rudu2ng5205a"

@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://c511xy8q5wc0v"]
+
+[ext_resource type="Script" uid="uid://m617110lcvm0" path="res://scripts/ui/game_ui_manager.gd" id="1_xjfbv"]
+[ext_resource type="PackedScene" uid="uid://7ffhab8l7j8l" path="res://scenes/ui/weapon/ui_ammo_check.tscn" id="2_bma8u"]
+
+[node name="Game UI" type="CanvasLayer" node_paths=PackedStringArray("ammo_check")]
+script = ExtResource("1_xjfbv")
+ammo_check = NodePath("UiAmmoCheck")
+
+[node name="UiAmmoCheck" parent="." instance=ExtResource("2_bma8u")]
+modulate = Color(1, 1, 1, 0)
+offset_left = 2.0
+offset_right = 2.0
+
+[node name="UiDebugCrossheir" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UiDebugCrossheir"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0, 1)

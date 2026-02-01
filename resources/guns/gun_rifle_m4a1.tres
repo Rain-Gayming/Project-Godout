@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GunInfo" load_steps=2 format=3 uid="uid://bjooxjl3hp548"]
+
+[ext_resource type="Script" uid="uid://bobwipym4sjgb" path="res://scripts/weapons/gun_info.gd" id="1_ddt0f"]
+
+[resource]
+script = ExtResource("1_ddt0f")
+barrel_length = 0.368
+barrel_condition = 100.0
+metadata/_custom_type_script = "uid://bobwipym4sjgb"

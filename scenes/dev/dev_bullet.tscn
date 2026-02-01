@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://mxtrp2wcavxs"]
+
+[ext_resource type="Script" uid="uid://0o7gmrydowu4" path="res://scripts/weapons/bullet.gd" id="1_eb75i"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6kdqr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6kdqr"]
+size = Vector3(0.37597656, 0.053710938, 0.099609375)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6kdqr"]
+radius = 0.07128906
+height = 0.45507813
+
+[node name="Dev Bullet" type="RigidBody3D"]
+disable_mode = 2
+mass = 0.05
+continuous_cd = true
+contact_monitor = true
+script = ExtResource("1_eb75i")
+
+[node name="Mesh" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.35611802, 0, 0, 0, 0.052488625, 0, 0, 0, 0.06643236, 0, 0, 0)
+mesh = SubResource("BoxMesh_6kdqr")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_6kdqr")
+disabled = true
+
+[node name="Hit Box" type="Area3D" parent="."]
+
+[node name="Hit Collider" type="CollisionShape3D" parent="Hit Box"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_6kdqr")
+
+[connection signal="body_entered" from="Hit Box" to="." method="_hit_box_detection"]
