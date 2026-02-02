@@ -168,7 +168,7 @@ mesh = SubResource("BoxMesh_xocri")
 skeleton = NodePath("../..")
 
 [node name="Muzzle Point" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8455183, 0.021213487, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2482657, 0.0011773705, 0.010457482)
 
 [node name="Timers" type="Node3D" parent="."]
 

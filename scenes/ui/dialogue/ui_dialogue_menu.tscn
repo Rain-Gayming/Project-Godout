@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb0vr8kduu8wp"]
+
+[ext_resource type="Script" uid="uid://dxo1x1w15k0er" path="res://scripts/dialogue/dialogue_manager.gd" id="1_6grdi"]
+[ext_resource type="PackedScene" uid="uid://caim0rqsof8yp" path="res://scenes/ui/dialogue/dialogue_option_button.tscn" id="2_sd542"]
+
+[node name="UiDialogueMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6grdi")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -275.0
+offset_top = -268.0
+offset_right = 275.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.22352941, 0.047058824, 0.023529412, 1)
+
+[node name="Foreground" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.25
+offset_top = 6.25
+offset_right = -6.25
+offset_bottom = -6.25
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.56078434, 0.105882354, 0.08235294, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/Foreground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsContainer" type="VBoxContainer" parent="Background/Foreground/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ExitButton" parent="Background/Foreground/ScrollContainer/OptionsContainer" instance=ExtResource("2_sd542")]
+layout_mode = 2
+text = "Exit "
+
+[connection signal="pressed" from="Background/Foreground/ScrollContainer/OptionsContainer/ExitButton" to="." method="exit_dialogue"]

@@ -20,6 +20,9 @@ extends Node
 
 
 func _input(event: InputEvent) -> void:
+	if !CursorManager.cursor_locked:
+		return
+
 	if event is InputEventMouseMotion:
 		var direction = event.relative
 		head.rotate_y(-direction.x * 0.005)
@@ -34,6 +37,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if !CursorManager.cursor_locked:
+		return
+
 	directional_movement()
 	jump_and_gravity(delta)
 	character_body.move_and_slide()

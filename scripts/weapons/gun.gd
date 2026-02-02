@@ -22,6 +22,9 @@ extends Node
 
 
 func _process(_delta):
+	if !CursorManager.cursor_locked:
+		return
+
 	if Input.is_action_just_pressed("combat_shoot"):
 		shoot()
 
@@ -39,7 +42,6 @@ func shoot():
 			GameUi.hide_ammo_check()
 			return
 
-	weapon_holder.shoot()
 	var bullet = bullet_scene.instantiate()
 	bullet.global_transform = muzzle_point.global_transform
 	get_tree().get_root().add_child(bullet)
@@ -49,7 +51,7 @@ func shoot():
 		* (gun_info.barrel_length)
 		* gun_info.barrel_condition
 	)
-	print(final_velocity)
+	weapon_holder.shoot()
 	bullet.fire(final_velocity)
 
 
