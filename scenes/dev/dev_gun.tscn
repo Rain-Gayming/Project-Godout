@@ -45,8 +45,9 @@ material = ExtResource("1_w6ub3")
 [sub_resource type="BoxMesh" id="BoxMesh_xocri"]
 material = ExtResource("1_w6ub3")
 
-[node name="Dev Gun" type="Node3D" node_paths=PackedStringArray("muzzle_point", "ammo_check_timer", "ammo_check_delay_timer", "ammo_check_fade_timer")]
+[node name="Dev Gun" type="Node3D" node_paths=PackedStringArray("pip_scope", "muzzle_point", "ammo_check_timer", "ammo_check_delay_timer", "ammo_check_fade_timer")]
 script = ExtResource("1_t52eb")
+pip_scope = NodePath("MeshInstance3D")
 muzzle_point = NodePath("Muzzle Point")
 bullet_scene = ExtResource("2_k2o87")
 gun_info = ExtResource("3_150sv")
@@ -58,6 +59,7 @@ ammo_check_fade_timer = NodePath("Timers/Ammo Check Fade Timer")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(4.8318665e-09, -2.7975284e-09, 0.064, -1.5258792e-08, 0.064, 2.7975298e-09, -0.064, -1.5258792e-08, 4.831866e-09, 0.13714138, 0.16417913, 0.010394877)
+visible = false
 material_override = SubResource("ShaderMaterial_vkkeb")
 mesh = SubResource("QuadMesh_d618e")
 skeleton = NodePath("")

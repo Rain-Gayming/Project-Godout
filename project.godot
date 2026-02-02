@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 CursorManager="*res://scripts/camera/cursor.gd"
 GameUi="*res://scenes/ui/game_ui.tscn"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+
+[dialogue_manager]
+
+runtime/balloon_path="res://scenes/ui/dialogue/balloon.tscn"
 
 [display]
 
@@ -26,7 +31,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-polyliner/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/godot-polyliner/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [filesystem]
 
@@ -80,6 +85,6 @@ game_interact={
 ]
 }
 
-[rendering]
+[internationalization]
 
-anti_aliasing/quality/msaa_3d=3
+locale/translations_pot_files=PackedStringArray("res://resources/dialogue/untitled.dialogue", "res://resources/dialogue//untitled.dialogue")

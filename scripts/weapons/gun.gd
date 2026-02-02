@@ -1,6 +1,7 @@
 class_name Gun
 extends Node
 
+@export var pip_scope: Node3D
 @export var weapon_holder: WeaponHolder
 @export var muzzle_point: Marker3D
 @export var bullet_scene: PackedScene
@@ -30,6 +31,8 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("ammo_check"):
 		ammo_check()
+	if Input.is_action_just_pressed("combat_aim"):
+		pip_scope.visible = !pip_scope.visible
 
 
 func shoot():
