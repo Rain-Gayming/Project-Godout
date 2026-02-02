@@ -39,7 +39,6 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("combat_aim"):
 		pip_scope.visible = !pip_scope.visible
-	
 
 
 func shoot():
@@ -67,6 +66,7 @@ func shoot():
 		* (gun_info.barrel_length)
 		* gun_info.barrel_condition
 	)
+	bullet.bullet_info = bullet_info
 	weapon_holder.shoot()
 	bullet.fire(final_velocity)
 	ammo_amount -= 1
@@ -118,4 +118,3 @@ func calculate_ammo_amount():
 func _on_reload_timer_timeout() -> void:
 	ammo_amount = magazine_capacity
 	reload_timer.stop()
-

@@ -1,13 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://bqtsjd3dqqbox"]
+[gd_scene load_steps=24 format=3 uid="uid://bqtsjd3dqqbox"]
 
 [ext_resource type="Script" uid="uid://bptpnocn21ms4" path="res://scripts/player/player_movement.gd" id="1_5neua"]
 [ext_resource type="Script" uid="uid://dbc1eo4wpci63" path="res://scripts/camera/camera.gd" id="1_bkev0"]
 [ext_resource type="Script" uid="uid://5nvkiv04op2r" path="res://scripts/player/weapon_holder.gd" id="1_ep40k"]
 [ext_resource type="PackedScene" uid="uid://xksk8qn3xsfs" path="res://scenes/dev/dev_gun.tscn" id="1_yjf0v"]
 [ext_resource type="Script" uid="uid://c6y0f8otbypep" path="res://scripts/weapons/recoil.gd" id="3_scnqt"]
-[ext_resource type="Script" uid="uid://b4vescbribg2k" path="res://scripts/hitbox.gd" id="5_j84jo"]
 [ext_resource type="Script" uid="uid://dbnc0c23udtqi" path="res://scripts/interaction/interact_talk.gd" id="6_bkev0"]
 [ext_resource type="Resource" uid="uid://do0rxeovfwpyd" path="res://resources/dialogue/untitled.dialogue" id="7_t0420"]
+[ext_resource type="PackedScene" uid="uid://ble2rbn5ck60j" path="res://scenes/dev/dev_dummy.tscn" id="8_t0420"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jk4q1"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -98,13 +98,6 @@ height = 2.0317383
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bkev0"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_loxm1"]
-radius = 0.9160158
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t0420"]
-radius = 0.61816406
-height = 2.3378906
-
 [node name="Dev World" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -133,7 +126,7 @@ script = ExtResource("1_bkev0")
 interaction_raycast = NodePath("InteractionRaycast")
 
 [node name="Aim Point" type="Marker3D" parent="Player/CameraHolder/Camera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009894013, -0.16348934, -0.64819336)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009894013, -0.16348934, -0.44580078)
 
 [node name="Hip Point" type="Marker3D" parent="Player/CameraHolder/Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16963555, -0.18508625, -0.62142944)
@@ -214,132 +207,40 @@ shape = SubResource("CapsuleShape3D_loxm1")
 mesh = SubResource("CapsuleMesh_bkev0")
 
 [node name="Dummies" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -934.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -250)
 
-[node name="Dummy2" type="CharacterBody3D" parent="Dummies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.831, 634.8)
+[node name="Dummy" parent="Dummies" instance=ExtResource("8_t0420")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy2"]
-shape = SubResource("SphereShape3D_loxm1")
+[node name="Dummy2" parent="Dummies" instance=ExtResource("8_t0420")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -50)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Dummies/Dummy2"]
-mesh = SubResource("CapsuleMesh_bkev0")
+[node name="Dummy3" parent="Dummies" instance=ExtResource("8_t0420")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -150)
 
-[node name="Area3D" type="Area3D" parent="Dummies/Dummy2/CSGMesh3D"]
-script = ExtResource("5_j84jo")
+[node name="Dummy4" parent="Dummies" instance=ExtResource("8_t0420")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -200)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy2/CSGMesh3D/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17366362, 0)
-shape = SubResource("CapsuleShape3D_t0420")
+[node name="Dummy5" parent="Dummies" instance=ExtResource("8_t0420")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -300)
 
-[node name="Dummy3" type="CharacterBody3D" parent="Dummies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.831, 584.8)
+[node name="Dummy6" parent="Dummies" instance=ExtResource("8_t0420")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -350)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy3"]
-shape = SubResource("SphereShape3D_loxm1")
+[node name="Dummy7" parent="Dummies" instance=ExtResource("8_t0420")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -400)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Dummies/Dummy3"]
-mesh = SubResource("CapsuleMesh_bkev0")
+[node name="Dummy8" parent="Dummies" instance=ExtResource("8_t0420")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -450)
 
-[node name="Area3D" type="Area3D" parent="Dummies/Dummy3/CSGMesh3D"]
-script = ExtResource("5_j84jo")
+[node name="Dummy9" parent="Dummies" instance=ExtResource("8_t0420")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -500)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy3/CSGMesh3D/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17366362, 0)
-shape = SubResource("CapsuleShape3D_t0420")
+[node name="Dummy10" parent="Dummies" instance=ExtResource("8_t0420")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -650)
 
-[node name="Dummy4" type="CharacterBody3D" parent="Dummies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.831, 534.8)
+[node name="Dummy11" parent="Dummies" instance=ExtResource("8_t0420")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -750)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy4"]
-shape = SubResource("SphereShape3D_loxm1")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Dummies/Dummy4"]
-mesh = SubResource("CapsuleMesh_bkev0")
-
-[node name="Area3D" type="Area3D" parent="Dummies/Dummy4/CSGMesh3D"]
-script = ExtResource("5_j84jo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy4/CSGMesh3D/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17366362, 0)
-shape = SubResource("CapsuleShape3D_t0420")
-
-[node name="Dummy5" type="CharacterBody3D" parent="Dummies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.831, 434.8)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy5"]
-shape = SubResource("SphereShape3D_loxm1")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Dummies/Dummy5"]
-mesh = SubResource("CapsuleMesh_bkev0")
-
-[node name="Area3D" type="Area3D" parent="Dummies/Dummy5/CSGMesh3D"]
-script = ExtResource("5_j84jo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy5/CSGMesh3D/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17366362, 0)
-shape = SubResource("CapsuleShape3D_t0420")
-
-[node name="Dummy6" type="CharacterBody3D" parent="Dummies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.831, 334.8)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy6"]
-shape = SubResource("SphereShape3D_loxm1")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Dummies/Dummy6"]
-mesh = SubResource("CapsuleMesh_bkev0")
-
-[node name="Area3D" type="Area3D" parent="Dummies/Dummy6/CSGMesh3D"]
-script = ExtResource("5_j84jo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy6/CSGMesh3D/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17366362, 0)
-shape = SubResource("CapsuleShape3D_t0420")
-
-[node name="Dummy7" type="CharacterBody3D" parent="Dummies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.831, 184.79999)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy7"]
-shape = SubResource("SphereShape3D_loxm1")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Dummies/Dummy7"]
-mesh = SubResource("CapsuleMesh_bkev0")
-
-[node name="Area3D" type="Area3D" parent="Dummies/Dummy7/CSGMesh3D"]
-script = ExtResource("5_j84jo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy7/CSGMesh3D/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17366362, 0)
-shape = SubResource("CapsuleShape3D_t0420")
-
-[node name="Dummy8" type="CharacterBody3D" parent="Dummies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.831, -65.20001)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy8"]
-shape = SubResource("SphereShape3D_loxm1")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Dummies/Dummy8"]
-mesh = SubResource("CapsuleMesh_bkev0")
-
-[node name="Area3D" type="Area3D" parent="Dummies/Dummy8/CSGMesh3D"]
-script = ExtResource("5_j84jo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy8/CSGMesh3D/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17366362, 0)
-shape = SubResource("CapsuleShape3D_t0420")
-
-[node name="Dummy" type="CharacterBody3D" parent="Dummies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.831, 684.8)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy"]
-shape = SubResource("SphereShape3D_loxm1")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Dummies/Dummy"]
-mesh = SubResource("CapsuleMesh_bkev0")
-
-[node name="Area3D" type="Area3D" parent="Dummies/Dummy/CSGMesh3D"]
-script = ExtResource("5_j84jo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummies/Dummy/CSGMesh3D/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17366362, 0)
-shape = SubResource("CapsuleShape3D_t0420")
+[node name="Dummy12" parent="Dummies" instance=ExtResource("8_t0420")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -1000)

@@ -22,17 +22,17 @@ shader_parameter/scope_texture = SubResource("ViewportTexture_ljg8s")
 shader_parameter/scope_radius = 0.025
 shader_parameter/scope_inner_radius = 1.0
 shader_parameter/scope_depth = 2.0
-shader_parameter/scope_fade_size = 0.05
+shader_parameter/scope_fade_size = 0.050000002375
 shader_parameter/scope_parallax_factor = 0.1
-shader_parameter/lens_bevel_start = 0.78
-shader_parameter/lens_curvature = 0.03
+shader_parameter/lens_bevel_start = 0.0
+shader_parameter/lens_curvature = 0.0
 shader_parameter/eyebox_position = 0.15
-shader_parameter/eyebox_tolerance = 5.325
+shader_parameter/eyebox_tolerance = 5.0
 shader_parameter/eyebox_fade_distance = 0.05
-shader_parameter/shadow_enabled = 1.0
-shader_parameter/shadow_inner_radius = 1.0
+shader_parameter/shadow_enabled = 0.0
+shader_parameter/shadow_inner_radius = 0.0
 shader_parameter/shadow_fade_factor = 0.2
-shader_parameter/shadow_movement_factor = 1.0
+shader_parameter/shadow_movement_factor = 0.5
 
 [sub_resource type="QuadMesh" id="QuadMesh_d618e"]
 
@@ -125,11 +125,11 @@ transparent_bg = true
 [node name="ScopeView" type="SubViewport" parent="Mesh/Rear Sight/Rear Sight3"]
 
 [node name="Camera3D" type="Camera3D" parent="Mesh/Rear Sight/Rear Sight3/ScopeView"]
-transform = Transform3D(-1.03403e-09, -2.4973028e-09, 0.057131622, -7.916246e-09, 0.028833885, 1.2603693e-09, -0.08290015, -1.30385205e-08, -4.2612047e-09, -0.08672294, 0.16836414, 0.0012932047)
+transform = Transform3D(-1.0340311e-09, -2.4973057e-09, 0.057131622, -7.916258e-09, 0.028833926, 1.2603707e-09, -0.08290027, -1.3038535e-08, -4.2612154e-09, -0.10577515, 0.17622918, 0.009323606)
 fov = 3.8311298
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Mesh/Rear Sight/Rear Sight3"]
-transform = Transform3D(-1.0000011, -1.4207652e-07, -8.152596e-08, -8.1525975e-08, -4.3711413e-08, 1.0000002, -1.4887235e-07, 1.0000007, 4.371143e-08, 3.511086e-07, -9.640905, 4.0219026)
+transform = Transform3D(-1.0000025, -1.4207666e-07, -8.152609e-08, -8.152608e-08, -4.3711463e-08, 1.0000002, -1.4887256e-07, 1.0000021, 4.371148e-08, 0.096868835, -9.974385, 4.2946734)
 remote_path = NodePath("../ScopeView/Camera3D")
 
 [node name="Rear Sight" type="MeshInstance3D" parent="Mesh/Rear Sight"]

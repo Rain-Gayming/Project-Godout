@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://ble2rbn5ck60j"]
+
+[ext_resource type="Script" uid="uid://dre2qn303tlgc" path="res://scripts/entities/entity_manager.gd" id="1_c5ao6"]
+[ext_resource type="Script" uid="uid://b4vescbribg2k" path="res://scripts/hitbox.gd" id="2_knht8"]
+[ext_resource type="Script" uid="uid://neclvk57r6lb" path="res://scripts/entities/health_manager.gd" id="3_gyefk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c5ao6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bkev0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_knht8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t0420"]
+radius = 0.61816406
+height = 2.0205078
+
+[node name="Dummy" type="CharacterBody3D" node_paths=PackedStringArray("health_manager")]
+script = ExtResource("1_c5ao6")
+health_manager = NodePath("HealthManager")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_c5ao6")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("CapsuleMesh_bkev0")
+material = SubResource("StandardMaterial3D_knht8")
+
+[node name="Area3D" type="Area3D" parent="CSGMesh3D"]
+script = ExtResource("2_knht8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGMesh3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01497221, 0)
+shape = SubResource("CapsuleShape3D_t0420")
+
+[node name="HealthManager" type="Node" parent="." node_paths=PackedStringArray("model")]
+script = ExtResource("3_gyefk")
+model = NodePath("../CSGMesh3D")
+metadata/_custom_type_script = "uid://neclvk57r6lb"

@@ -1,10 +1,12 @@
 extends Node
 
+@export_group("Ammo Check")
 @export var ammo_check: Control
 @export var ammo_check_visible: bool = false
 
-@export var dialogue_menu: Control
-@export var dialogue_menu_visible: bool = false
+@export_group("Crosshair")
+@export var crosshair: Control
+@export var crosshair_visible: bool = false
 
 
 func _process(_delta):
@@ -13,10 +15,20 @@ func _process(_delta):
 	else:
 		ammo_check.modulate.a = lerp(ammo_check.modulate.a, 0.0, 0.1)
 
-	if dialogue_menu_visible:
-		dialogue_menu.modulate.a = lerp(dialogue_menu.modulate.a, 1.0, 0.1)
+	if crosshair_visible:
+		crosshair.modulate.a = lerp(crosshair.modulate.a, 1.0, 0.5)
+		if crosshair.modulate.a == 1.0:
+			crosshair_visible = false
 	else:
-		dialogue_menu.modulate.a = lerp(dialogue_menu.modulate.a, 0.0, 0.1)
+		crosshair.modulate.a = lerp(crosshair.modulate.a, 0.0, 0.5)
+
+
+func show_crosshair():
+	crosshair_visible = true
+
+
+func hide_crosshair():
+	crosshair_visible = false
 
 
 func show_ammo_check(ammo_type: String, ammo_amount: String):
@@ -29,11 +41,9 @@ func hide_ammo_check():
 
 
 func show_dialogue_menu():
-	dialogue_menu_visible = true
 	CursorManager.unlock_mouse()
 	# dialogue_menu.update_dialogue(dialogue_type)
 
 
 func hide_dialogue_menu():
-	dialogue_menu_visible = false
 	CursorManager.lock_mouse()
