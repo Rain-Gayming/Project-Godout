@@ -45,17 +45,17 @@ material = ExtResource("1_w6ub3")
 [sub_resource type="BoxMesh" id="BoxMesh_xocri"]
 material = ExtResource("1_w6ub3")
 
-[node name="Dev Gun" type="Node3D" node_paths=PackedStringArray("pip_scope", "muzzle_point", "ammo_check_timer", "ammo_check_delay_timer", "ammo_check_fade_timer")]
+[node name="DevGun" type="Node3D" node_paths=PackedStringArray("pip_scope", "muzzle_point", "reload_timer", "ammo_check_timer", "ammo_check_delay_timer", "ammo_check_fade_timer")]
 script = ExtResource("1_t52eb")
 pip_scope = NodePath("MeshInstance3D")
-muzzle_point = NodePath("Muzzle Point")
+muzzle_point = NodePath("MuzzlePoint")
 bullet_scene = ExtResource("2_k2o87")
 gun_info = ExtResource("3_150sv")
 bullet_info = ExtResource("4_d618e")
-ammo_amount = 1
-ammo_check_timer = NodePath("Timers/Ammo Check Timer")
-ammo_check_delay_timer = NodePath("Timers/Ammo Check Delay Timer")
-ammo_check_fade_timer = NodePath("Timers/Ammo Check Fade Timer")
+reload_timer = NodePath("Timers/ReloadTimer")
+ammo_check_timer = NodePath("Timers/AmmoCheckTimer")
+ammo_check_delay_timer = NodePath("Timers/AmmoCheckDelayTimer")
+ammo_check_fade_timer = NodePath("Timers/AmmoCheckFadeTimer")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(4.8318665e-09, -2.7975284e-09, 0.064, -1.5258792e-08, 0.064, 2.7975298e-09, -0.064, -1.5258792e-08, 4.831866e-09, 0.13714138, 0.16417913, 0.010394877)
@@ -169,23 +169,27 @@ material_override = ExtResource("2_t52eb")
 mesh = SubResource("BoxMesh_xocri")
 skeleton = NodePath("../..")
 
-[node name="Muzzle Point" type="Marker3D" parent="."]
+[node name="MuzzlePoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2482657, 0.0011773705, 0.010457482)
 
 [node name="Timers" type="Node3D" parent="."]
 
-[node name="Ammo Check Timer" type="Timer" parent="Timers"]
+[node name="AmmoCheckTimer" type="Timer" parent="Timers"]
 wait_time = 2.0
 
-[node name="Ammo Check Delay Timer" type="Timer" parent="Timers"]
+[node name="AmmoCheckDelayTimer" type="Timer" parent="Timers"]
 wait_time = 0.25
 
-[node name="Ammo Check Fade Timer" type="Timer" parent="Timers"]
+[node name="AmmoCheckFadeTimer" type="Timer" parent="Timers"]
+wait_time = 2.5
+
+[node name="ReloadTimer" type="Timer" parent="Timers"]
 wait_time = 2.5
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("9_vkkeb")]
 transform = Transform3D(-2.6663947e-08, 0, 0.61, 0, 0.61, 0, -0.61, 0, -2.6663947e-08, -0.23320782, -0.13990799, 0.009557486)
 
-[connection signal="timeout" from="Timers/Ammo Check Timer" to="." method="_ammo_check_timer_timeout"]
-[connection signal="timeout" from="Timers/Ammo Check Delay Timer" to="." method="_ammo_check_timer_delay_timeout"]
-[connection signal="timeout" from="Timers/Ammo Check Fade Timer" to="." method="_ammo_check_fade_timer_timeout"]
+[connection signal="timeout" from="Timers/AmmoCheckTimer" to="." method="_ammo_check_timer_timeout"]
+[connection signal="timeout" from="Timers/AmmoCheckDelayTimer" to="." method="_ammo_check_timer_delay_timeout"]
+[connection signal="timeout" from="Timers/AmmoCheckFadeTimer" to="." method="_ammo_check_fade_timer_timeout"]
+[connection signal="timeout" from="Timers/ReloadTimer" to="." method="_on_reload_timer_timeout"]

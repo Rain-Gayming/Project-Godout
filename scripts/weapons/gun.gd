@@ -17,6 +17,9 @@ extends Node
 @export var magazine_capacity: int = 30
 
 @export_group("Timers")
+@export_group("Timers/Reload")
+@export var reload_timer: Timer
+@export_group("Timers/Ammo Check")
 @export var ammo_check_timer: Timer
 @export var ammo_check_delay_timer: Timer
 @export var ammo_check_fade_timer: Timer
@@ -31,8 +34,12 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("ammo_check"):
 		ammo_check()
+	elif Input.is_action_just_pressed("combat_reload"):
+		reload_timer.start()
+
 	if Input.is_action_just_pressed("combat_aim"):
 		pip_scope.visible = !pip_scope.visible
+	
 
 
 func shoot():
@@ -45,6 +52,12 @@ func shoot():
 			GameUi.hide_ammo_check()
 			return
 
+	if ammo_amount <= 0:
+		return
+
+	if reload_timer.time_left > 0:
+		return
+
 	var bullet = bullet_scene.instantiate()
 	bullet.global_transform = muzzle_point.global_transform
 	get_tree().get_root().add_child(bullet)
@@ -56,6 +69,7 @@ func shoot():
 	)
 	weapon_holder.shoot()
 	bullet.fire(final_velocity)
+	ammo_amount -= 1
 
 
 func ammo_check():
@@ -68,13 +82,11 @@ func ammo_check():
 
 
 func _ammo_check_timer_delay_timeout() -> void:
-	print("Impliment ammo check bitch")
 	ammo_check_delay_timer.stop()
 	GameUi.show_ammo_check(ammo_type, calculate_ammo_amount())
 
 
 func _ammo_check_fade_timer_timeout() -> void:
-	print("Fade out ammo check")
 	GameUi.hide_ammo_check()
 
 
@@ -101,3 +113,9 @@ func calculate_ammo_amount():
 		return "Almost Empty"
 	elif ammo_percentage == 0.0:
 		return "Empty"
+
+
+func _on_reload_timer_timeout() -> void:
+	ammo_amount = magazine_capacity
+	reload_timer.stop()
+

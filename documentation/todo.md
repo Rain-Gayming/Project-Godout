@@ -7,7 +7,7 @@
 - [x] Add weapon recoil [finished: 1st febuary 2026]
 - [x] Add weapon aiming [finished: 1st febuary 2026]
 - [ ] Add weapon switching
-- [ ] Add weapon reloading
+- [x] Add weapon reloading [finished: 2nd febuary 2026]
 - [x] Add weapon recoil [finished: 1st febuary 2026]
 - [ ] Add weapon spread
 - [ ] Add gun jamming
