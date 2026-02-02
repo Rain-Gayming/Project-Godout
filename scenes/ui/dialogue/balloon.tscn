@@ -224,6 +224,7 @@ response_template = NodePath("ResponseExample")
 layout_mode = 2
 theme = SubResource("Theme_mqfk6")
 text = "Response example"
+metadata/_edit_lock_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

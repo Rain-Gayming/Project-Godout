@@ -27,6 +27,7 @@ func _input(event: InputEvent) -> void:
 		var direction = event.relative
 		head.rotate_y(-direction.x * 0.005)
 		camera.rotate_x(-direction.y * 0.005)
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80), deg_to_rad(80))
 		weapon_holder.mouse_delta = direction
 
 
