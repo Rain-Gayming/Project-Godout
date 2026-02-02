@@ -5,3 +5,4 @@ extends Resource
 @export var penetration: int
 @export var weight: float
 @export var base_velocity: float
+@export var bullet_condition: float

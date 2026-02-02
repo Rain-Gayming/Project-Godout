@@ -3,3 +3,4 @@ extends Resource
 
 @export var barrel_length: float
 @export var barrel_condition: float
+@export var receiver_condition: float

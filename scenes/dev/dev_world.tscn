@@ -157,7 +157,7 @@ metadata/_custom_type_script = "uid://c6y0f8otbypep"
 
 [node name="Rotation Raycast" type="RayCast3D" parent="Player/CameraHolder/Camera/Weapon Holder"]
 transform = Transform3D(0.9998477, 0, -0.017452406, 0, 1, 0, 0.017452406, 0, 0.9998477, -0.025831804, 0.021526814, 0.7446626)
-target_position = Vector3(0, 0, -1.785)
+target_position = Vector3(0, 0, -2.145)
 
 [node name="Pull Raycast" type="RayCast3D" parent="Player/CameraHolder/Camera/Weapon Holder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018106088, 0.021526814, 0.30205512)

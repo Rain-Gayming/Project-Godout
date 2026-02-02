@@ -16,6 +16,7 @@ extends Node
 @export var ammo_amount: int = 30
 @export var magazine_capacity: int = 30
 
+@export var is_jammed: bool = false
 @export_group("Timers")
 @export_group("Timers/Reload")
 @export var reload_timer: Timer
@@ -57,6 +58,9 @@ func shoot():
 	if reload_timer.time_left > 0:
 		return
 
+	if is_jammed:
+		return
+
 	var bullet = bullet_scene.instantiate()
 	bullet.global_transform = muzzle_point.global_transform
 	get_tree().get_root().add_child(bullet)
@@ -66,10 +70,23 @@ func shoot():
 		* (gun_info.barrel_length)
 		* gun_info.barrel_condition
 	)
+
 	bullet.bullet_info = bullet_info
 	weapon_holder.shoot()
 	bullet.fire(final_velocity)
 	ammo_amount -= 1
+
+	var base_jam_rate = 2.0
+	var bullet_impact = (100 - bullet_info.bullet_condition) / 100 * 3.0
+
+	var receiver_impact = (100 - gun_info.receiver_condition) / 100 * 1.5
+	var barrel_impact = (100 - gun_info.barrel_condition) / 100 * 0.8
+	var jam_chance = (
+		base_jam_rate * (1 + bullet_impact) * (1 + receiver_impact) * (1 + barrel_impact)
+	)
+
+	if randf_range(0, 100) < jam_chance:
+		is_jammed = true
 
 
 func ammo_check():
@@ -116,5 +133,8 @@ func calculate_ammo_amount():
 
 
 func _on_reload_timer_timeout() -> void:
+	if is_jammed:
+		is_jammed = false
+		return
 	ammo_amount = magazine_capacity
 	reload_timer.stop()
