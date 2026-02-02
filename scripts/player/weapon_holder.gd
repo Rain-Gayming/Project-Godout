@@ -68,6 +68,8 @@ func _ready():
 
 
 func _process(delta):
+	if !CursorManager.cursor_locked:
+		return
 	# Aiming
 	if Input.is_action_just_pressed("combat_aim"):
 		aiming = !aiming

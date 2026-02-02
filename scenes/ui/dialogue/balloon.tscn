@@ -1,9 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://dsq8hvjmy3tts"]
+[gd_scene load_steps=19 format=3 uid="uid://dsq8hvjmy3tts"]
 
 [ext_resource type="Script" uid="uid://cdb8bbx7v38m8" path="res://scenes/ui/dialogue/balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="StyleBox" uid="uid://b7vywpcl3d0wh" path="res://assets/themes/theme_base.tres" id="2_pfnde"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
+[ext_resource type="Theme" uid="uid://doxcb4wwmi7xx" path="res://assets/themes/theme.tres" id="4_fk5ds"]
+[ext_resource type="StyleBox" uid="uid://c1fvem2q5jgyg" path="res://assets/themes/theme_flat_hovered.tres" id="6_i31sd"]
+[ext_resource type="StyleBox" uid="uid://ccb5q7luwexuv" path="res://assets/themes/theme_flat_normal.tres" id="6_mqfk6"]
+[ext_resource type="StyleBox" uid="uid://cfdw1xb7xatjt" path="res://assets/themes/theme_flat_focus.tres" id="7_a8je1"]
+[ext_resource type="StyleBox" uid="uid://8x1lu1cxwlh6" path="res://assets/themes/theme_flat_pressed.tres" id="9_1f2ms"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
 bg_color = Color(0, 0, 0, 1)
@@ -100,11 +105,24 @@ _data = {
 &"progress": SubResource("Animation_qkmqt")
 }
 
-[sub_resource type="Theme" id="Theme_pfnde"]
-MarginContainer/constants/margin_bottom = 0
-MarginContainer/constants/margin_left = 0
-MarginContainer/constants/margin_right = 0
-MarginContainer/constants/margin_top = 0
+[sub_resource type="Theme" id="Theme_mqfk6"]
+Button/styles/disabled = ExtResource("6_i31sd")
+Button/styles/focus = ExtResource("7_a8je1")
+Button/styles/hover = ExtResource("6_i31sd")
+Button/styles/normal = ExtResource("6_mqfk6")
+Button/styles/pressed = ExtResource("9_1f2ms")
+LineEdit/styles/focus = ExtResource("7_a8je1")
+LineEdit/styles/normal = ExtResource("6_mqfk6")
+LineEdit/styles/read_only = ExtResource("9_1f2ms")
+TabBar/styles/button_highlight = ExtResource("6_mqfk6")
+TabBar/styles/button_pressed = ExtResource("9_1f2ms")
+TabBar/styles/tab_disabled = ExtResource("9_1f2ms")
+TabBar/styles/tab_focus = ExtResource("7_a8je1")
+TabBar/styles/tab_hovered = ExtResource("6_i31sd")
+TabBar/styles/tab_selected = ExtResource("9_1f2ms")
+TabBar/styles/tab_unselected = ExtResource("9_1f2ms")
+TextEdit/styles/focus = ExtResource("7_a8je1")
+TextEdit/styles/normal = ExtResource("6_mqfk6")
 
 [node name="ExampleBalloon" type="CanvasLayer" node_paths=PackedStringArray("balloon", "character_label", "dialogue_label", "responses_menu", "progress")]
 layer = 100
@@ -196,6 +214,7 @@ offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
+theme = ExtResource("4_fk5ds")
 theme_override_constants/separation = 2
 alignment = 1
 script = ExtResource("3_72ixx")
@@ -203,11 +222,7 @@ response_template = NodePath("ResponseExample")
 
 [node name="ResponseExample" type="Button" parent="Balloon/ResponsesMenu"]
 layout_mode = 2
-theme = SubResource("Theme_pfnde")
-theme_override_styles/normal = ExtResource("2_pfnde")
-theme_override_styles/pressed = ExtResource("2_pfnde")
-theme_override_styles/hover = ExtResource("2_pfnde")
-theme_override_styles/disabled = ExtResource("2_pfnde")
+theme = SubResource("Theme_mqfk6")
 text = "Response example"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
