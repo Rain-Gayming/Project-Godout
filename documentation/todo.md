@@ -1,5 +1,16 @@
 # Gameplay
 
+## Items 
+
+- [ ] Add base item 
+- [ ] Add consumable item
+- [ ] Add durability item
+    - [ ] Add weapon items 
+        - [ ] Add weapon parts
+    - [ ] Add armor items
+    - [ ] Add ammo items
+- [ ] Add note/book items
+
 ## Weapons
 
 - [x] Add gun firing [finished: 1st febuary 2026]
@@ -12,6 +23,13 @@
 - [ ] Add weapon spread
 - [x] Add gun jamming [finished: 2nd febuary 2026]
 - [ ] Add weapon pull back (wall detection)
+
+- [ ] Add ammo swapping
+
+## Tools:
+
+- [ ] Add range finder
+- [ ] Add batteries
 
 ## Movement
 

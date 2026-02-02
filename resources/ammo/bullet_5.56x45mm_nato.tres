@@ -7,5 +7,5 @@ script = ExtResource("1_fb2ri")
 damage = 14
 weight = 0.012
 base_velocity = 945.0
-bullet_condition = 20.0
+bullet_condition = 100.0
 metadata/_custom_type_script = "uid://rudu2ng5205a"

@@ -85,6 +85,7 @@ func shoot():
 		base_jam_rate * (1 + bullet_impact) * (1 + receiver_impact) * (1 + barrel_impact)
 	)
 
+	print(jam_chance)
 	if randf_range(0, 100) < jam_chance:
 		is_jammed = true
 
