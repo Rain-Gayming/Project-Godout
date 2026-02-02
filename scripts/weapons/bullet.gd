@@ -6,8 +6,10 @@ func fire(speed):
 	linear_velocity = -basis.x * speed
 
 
-var previous_position = global_position
+var previous_position 
 
+func _ready():
+	previous_position = global_position
 
 func _physics_process(delta):
 	var space_state = get_world_3d().direct_space_state
