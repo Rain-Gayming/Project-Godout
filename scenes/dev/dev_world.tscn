@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bqtsjd3dqqbox"]
+[gd_scene load_steps=25 format=3 uid="uid://bqtsjd3dqqbox"]
 
 [ext_resource type="Script" uid="uid://bptpnocn21ms4" path="res://scripts/player/player_movement.gd" id="1_5neua"]
 [ext_resource type="Script" uid="uid://dbc1eo4wpci63" path="res://scripts/camera/camera.gd" id="1_bkev0"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://xksk8qn3xsfs" path="res://scenes/dev/dev_gun.tscn" id="1_yjf0v"]
 [ext_resource type="Script" uid="uid://c6y0f8otbypep" path="res://scripts/weapons/recoil.gd" id="3_scnqt"]
 [ext_resource type="Script" uid="uid://dbnc0c23udtqi" path="res://scripts/interaction/interact_talk.gd" id="6_bkev0"]
+[ext_resource type="Material" uid="uid://cofltt846pq7w" path="res://assets/materials/sm_colour_black.tres" id="6_g07rn"]
 [ext_resource type="Resource" uid="uid://do0rxeovfwpyd" path="res://resources/dialogue/untitled.dialogue" id="7_t0420"]
 [ext_resource type="PackedScene" uid="uid://ble2rbn5ck60j" path="res://scenes/dev/dev_dummy.tscn" id="8_t0420"]
 
@@ -187,10 +188,17 @@ collision_layer = 3
 collision_mask = 3
 show_checkered = true
 top_level = true
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="Platform" type="CSGMesh3D" parent="."]
 transform = Transform3D(32.517933, 0, 0, 0, 1, 0, 0, 0, 18.575638, 0, 9.5, -193.9)
+use_collision = true
+mesh = SubResource("BoxMesh_scnqt")
+
+[node name="Platform2" type="CSGMesh3D" parent="."]
+transform = Transform3D(10000, 0, 0, 0, 1, 0, 0, 0, 10000, 0, -0.3025818, -193.9)
+material_override = ExtResource("6_g07rn")
 use_collision = true
 mesh = SubResource("BoxMesh_scnqt")
 

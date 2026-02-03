@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://caim0rqsof8yp"]
-
-[node name="DialogueOptionButton" type="Button"]
-flat = true
-alignment = 0
-autowrap_mode = 2

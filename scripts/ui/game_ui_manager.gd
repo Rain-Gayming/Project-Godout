@@ -4,9 +4,9 @@ extends Node
 @export var ammo_check: Control
 @export var ammo_check_visible: bool = false
 
-@export_group("Crosshair")
-@export var crosshair: Control
-@export var crosshair_visible: bool = false
+@export_group("Hitmarker")
+@export var hitmarker: Control
+@export var hitmarker_visible: bool = false
 
 
 func _process(_delta):
@@ -15,20 +15,20 @@ func _process(_delta):
 	else:
 		ammo_check.modulate.a = lerp(ammo_check.modulate.a, 0.0, 0.1)
 
-	if crosshair_visible:
-		crosshair.modulate.a = lerp(crosshair.modulate.a, 1.0, 0.5)
-		if crosshair.modulate.a == 1.0:
-			crosshair_visible = false
+	if hitmarker_visible:
+		hitmarker.modulate.a = lerp(hitmarker.modulate.a, 1.0, 0.5)
+		if hitmarker.modulate.a == 1.0:
+			hitmarker_visible = false
 	else:
-		crosshair.modulate.a = lerp(crosshair.modulate.a, 0.0, 0.5)
+		hitmarker.modulate.a = lerp(hitmarker.modulate.a, 0.0, 0.5)
 
 
 func show_crosshair():
-	crosshair_visible = true
+	hitmarker_visible = true
 
 
 func hide_crosshair():
-	crosshair_visible = false
+	hitmarker_visible = false
 
 
 func show_ammo_check(ammo_type: String, ammo_amount: String):
