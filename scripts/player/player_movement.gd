@@ -54,8 +54,11 @@ func directional_movement() -> void:
 	var direction = (
 		(head.transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	)
-	weapon_holder.velocity = character_body.velocity
-
+	weapon_holder.velocity = Vector3(input_direction.x, 0, input_direction.y)
+	if character_body.is_on_floor():
+		weapon_holder.velocity.y = 0
+	else:
+		weapon_holder.velocity.y = character_body.velocity.y
 	# moves the player based on their direction
 	if direction:
 		character_body.velocity.x = move_toward(

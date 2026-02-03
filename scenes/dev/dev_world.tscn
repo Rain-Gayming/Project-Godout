@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bqtsjd3dqqbox"]
+[gd_scene load_steps=22 format=3 uid="uid://bqtsjd3dqqbox"]
 
 [ext_resource type="Script" uid="uid://bptpnocn21ms4" path="res://scripts/player/player_movement.gd" id="1_5neua"]
 [ext_resource type="Script" uid="uid://dbc1eo4wpci63" path="res://scripts/camera/camera.gd" id="1_bkev0"]
@@ -6,9 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://xksk8qn3xsfs" path="res://scenes/dev/dev_gun.tscn" id="1_yjf0v"]
 [ext_resource type="Script" uid="uid://c6y0f8otbypep" path="res://scripts/weapons/recoil.gd" id="3_scnqt"]
 [ext_resource type="Script" uid="uid://dbnc0c23udtqi" path="res://scripts/interaction/interact_talk.gd" id="6_bkev0"]
-[ext_resource type="Material" uid="uid://cofltt846pq7w" path="res://assets/materials/sm_colour_black.tres" id="6_g07rn"]
 [ext_resource type="Resource" uid="uid://do0rxeovfwpyd" path="res://resources/dialogue/untitled.dialogue" id="7_t0420"]
-[ext_resource type="PackedScene" uid="uid://ble2rbn5ck60j" path="res://scenes/dev/dev_dummy.tscn" id="8_t0420"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jk4q1"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -28,11 +26,17 @@ glow_enabled = true
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5neua"]
 radius = 0.2944336
 
-[sub_resource type="Gradient" id="Gradient_scnqt"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_loxm1"]
+radius = 0.5708008
+height = 2.0317383
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bkev0"]
+
+[sub_resource type="Gradient" id="Gradient_bkev0"]
 offsets = PackedFloat32Array(0.2, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_j84jo"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_t0420"]
 noise_type = 2
 frequency = 0.03
 cellular_jitter = 3.0
@@ -44,12 +48,12 @@ domain_warp_fractal_type = 2
 domain_warp_fractal_lacunarity = 1.5
 domain_warp_fractal_gain = 1.0
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_loxm1"]
-noise = SubResource("FastNoiseLite_j84jo")
-color_ramp = SubResource("Gradient_scnqt")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g07rn"]
+noise = SubResource("FastNoiseLite_t0420")
+color_ramp = SubResource("Gradient_bkev0")
 seamless = true
 
-[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_bkev0"]
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_cwgpk"]
 _shader_parameters = {
 &"bias_distance": 512.0,
 &"blend_sharpness": 0.5,
@@ -65,12 +69,12 @@ _shader_parameters = {
 &"noise1_offset": Vector2(0.5, 0.5),
 &"noise1_scale": 0.04,
 &"noise2_scale": 0.076,
-&"noise_texture": SubResource("NoiseTexture2D_loxm1"),
+&"noise_texture": SubResource("NoiseTexture2D_g07rn"),
 &"projection_threshold": 0.8
 }
 show_checkered = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t0420"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mhi5j"]
 transparency = 4
 cull_mode = 2
 vertex_color_use_as_albedo = true
@@ -80,24 +84,16 @@ distance_fade_mode = 1
 distance_fade_min_distance = 128.0
 distance_fade_max_distance = 96.0
 
-[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_g07rn"]
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_xb8kj"]
 generated_type = 1
 height_offset = 0.5
-material_override = SubResource("StandardMaterial3D_t0420")
+material_override = SubResource("StandardMaterial3D_mhi5j")
 last_lod = 0
 last_shadow_lod = 0
 lod0_range = 128.0
 
-[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_scnqt"]
-mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_g07rn")])
-
-[sub_resource type="BoxMesh" id="BoxMesh_scnqt"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_loxm1"]
-radius = 0.5708008
-height = 2.0317383
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_bkev0"]
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_i4tpi"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_xb8kj")])
 
 [node name="Dev World" type="Node3D"]
 
@@ -181,28 +177,6 @@ acceleration = 1.25
 jump_speed = 4.0
 metadata/_custom_type_script = "uid://bptpnocn21ms4"
 
-[node name="Terrain3D" type="Terrain3D" parent="."]
-data_directory = "res://terrain/dev"
-material = SubResource("Terrain3DMaterial_bkev0")
-assets = SubResource("Terrain3DAssets_scnqt")
-collision_layer = 3
-collision_mask = 3
-show_checkered = true
-top_level = true
-metadata/_edit_lock_ = true
-
-[node name="Platform" type="CSGMesh3D" parent="."]
-transform = Transform3D(32.517933, 0, 0, 0, 1, 0, 0, 0, 18.575638, 0, 9.5, -193.9)
-use_collision = true
-mesh = SubResource("BoxMesh_scnqt")
-
-[node name="Platform2" type="CSGMesh3D" parent="."]
-transform = Transform3D(10000, 0, 0, 0, 1, 0, 0, 0, 10000, 0, -0.3025818, -193.9)
-visible = false
-material_override = ExtResource("6_g07rn")
-use_collision = true
-mesh = SubResource("BoxMesh_scnqt")
-
 [node name="TestNPC" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.911036, 11.138939, -199.06769)
 script = ExtResource("6_bkev0")
@@ -215,41 +189,10 @@ shape = SubResource("CapsuleShape3D_loxm1")
 [node name="CSGMesh3D" type="CSGMesh3D" parent="TestNPC"]
 mesh = SubResource("CapsuleMesh_bkev0")
 
-[node name="Dummies" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -250)
-
-[node name="Dummy" parent="Dummies" instance=ExtResource("8_t0420")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-
-[node name="Dummy2" parent="Dummies" instance=ExtResource("8_t0420")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -50)
-
-[node name="Dummy3" parent="Dummies" instance=ExtResource("8_t0420")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -150)
-
-[node name="Dummy4" parent="Dummies" instance=ExtResource("8_t0420")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -200)
-
-[node name="Dummy5" parent="Dummies" instance=ExtResource("8_t0420")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -300)
-
-[node name="Dummy6" parent="Dummies" instance=ExtResource("8_t0420")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -350)
-
-[node name="Dummy7" parent="Dummies" instance=ExtResource("8_t0420")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -400)
-
-[node name="Dummy8" parent="Dummies" instance=ExtResource("8_t0420")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -450)
-
-[node name="Dummy9" parent="Dummies" instance=ExtResource("8_t0420")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -500)
-
-[node name="Dummy10" parent="Dummies" instance=ExtResource("8_t0420")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -650)
-
-[node name="Dummy11" parent="Dummies" instance=ExtResource("8_t0420")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -750)
-
-[node name="Dummy12" parent="Dummies" instance=ExtResource("8_t0420")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -1000)
+[node name="Terrain3D" type="Terrain3D" parent="."]
+data_directory = "res://terrain/dev"
+material = SubResource("Terrain3DMaterial_cwgpk")
+assets = SubResource("Terrain3DAssets_i4tpi")
+show_checkered = true
+top_level = true
+metadata/_edit_lock_ = true

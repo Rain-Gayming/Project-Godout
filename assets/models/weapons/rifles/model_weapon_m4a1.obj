@@ -1,6 +1,6 @@
 # Blender 5.0.1
 # www.blender.org
-mtllib m4a1.mtl
+mtllib model_weapon_m4a1.mtl
 o Stock
 v -0.009659 -0.008956 -0.989313
 v -0.009659 -0.008956 -1.004260

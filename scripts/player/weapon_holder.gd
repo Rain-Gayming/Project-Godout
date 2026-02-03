@@ -62,7 +62,6 @@ extends Node3D
 @export var current_pull_back: Vector3 = Vector3.ZERO
 
 
-
 func _ready():
 	initial_position = hip_position.position
 
@@ -89,14 +88,14 @@ func _process(delta):
 func calculate_sway(delta: float):
 	# calculate sway
 	var target_sway = (
-		Vector3(-velocity.x * sway_amount, -velocity.y * sway_amount, -velocity.z * sway_amount)
+		Vector3(velocity.x * sway_amount, velocity.y * sway_amount, velocity.z * sway_amount)
 		/ divider
 	)
 	var target_position_sway = (
 		Vector3(
-			-velocity.x * position_sway_amount,
-			-velocity.y * position_sway_amount,
-			-velocity.z * position_sway_amount
+			velocity.x * position_sway_amount,
+			velocity.y * position_sway_amount,
+			velocity.z * position_sway_amount
 		)
 		/ divider
 	)
