@@ -139,6 +139,7 @@ aim_position = NodePath("../Aim Point")
 hip_position = NodePath("../Hip Point")
 sway_speed = 5.0
 max_sway = 0.1
+divider = 8
 recoil = NodePath("Recoil")
 wall_raycast = NodePath("Rotation Raycast")
 pull_raycast = NodePath("Pull Raycast")
@@ -188,7 +189,6 @@ collision_layer = 3
 collision_mask = 3
 show_checkered = true
 top_level = true
-visible = false
 metadata/_edit_lock_ = true
 
 [node name="Platform" type="CSGMesh3D" parent="."]
@@ -198,6 +198,7 @@ mesh = SubResource("BoxMesh_scnqt")
 
 [node name="Platform2" type="CSGMesh3D" parent="."]
 transform = Transform3D(10000, 0, 0, 0, 1, 0, 0, 0, 10000, 0, -0.3025818, -193.9)
+visible = false
 material_override = ExtResource("6_g07rn")
 use_collision = true
 mesh = SubResource("BoxMesh_scnqt")

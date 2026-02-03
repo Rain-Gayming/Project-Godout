@@ -12,7 +12,7 @@ extends Node3D
 @export var sway_amount := 0.1
 @export var sway_speed := 10.0
 @export var max_sway := 0.3
-@export var divider = 15
+@export var divider = 10
 
 @export_group("Sway/Inputs")
 @export var velocity := Vector3.ZERO

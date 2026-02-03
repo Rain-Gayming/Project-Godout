@@ -5,10 +5,10 @@
 - [ ] Add base item 
 - [ ] Add consumable item
 - [ ] Add durability item
-    - [ ] Add weapon items 
-        - [ ] Add weapon parts
-    - [ ] Add armor items
-    - [ ] Add ammo items
+	- [ ] Add weapon items 
+		- [ ] Add weapon parts
+	- [ ] Add armor items
+	- [ ] Add ammo items
 - [ ] Add note/book items
 
 ## Weapons
@@ -79,4 +79,3 @@
 ## Debug
 
 - [ ] Add debug mode
-
