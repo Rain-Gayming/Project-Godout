@@ -39,7 +39,8 @@ func _process(_delta):
 		reload_timer.start()
 
 	if Input.is_action_just_pressed("combat_aim"):
-		pip_scope.visible = !pip_scope.visible
+		if pip_scope != null:
+			pip_scope.visible = !pip_scope.visible
 
 
 func shoot():
