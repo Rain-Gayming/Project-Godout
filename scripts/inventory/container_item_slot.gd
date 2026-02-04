@@ -20,7 +20,7 @@ func _ready() -> void:
 		texture = data.item.item_icon
 
 
-func _process(delta):
+func _process(_delta):
 	information_text.text = data.item.get_slot_details()
 	if is_picked:
 		global_position = get_global_mouse_position()
@@ -53,19 +53,20 @@ func get_placed(pos: Vector2i):
 
 
 func do_rotation():
-	data.is_rotated = !data.is_rotated
-
-	if data.is_rotated:
-		data.current_size = Vector2(data.item.item_size.y, data.item.item_size.x)
-		texture = data.item.item_icon_rotated
-		information_text.rotation_degrees = 0
-		information_text.position = size / -2
-		information_text.size = size
-	else:
-		data.current_size = Vector2(data.item.item_size.x, data.item.item_size.y)
-		texture = data.item.item_icon
-		information_text.rotation_degrees = -90
-		information_text.size = Vector2(size.x, size.y)
-		information_text.position = Vector2(size.y / -2, size.x)
-
-	anchor_point = global_position - size / 2
+	return
+	# data.is_rotated = !data.is_rotated
+	#
+	# if data.is_rotated:
+	# 	data.current_size = Vector2(data.item.item_size.y, data.item.item_size.x)
+	# 	texture = data.item.item_icon_rotated
+	# 	information_text.rotation_degrees = 0
+	# 	information_text.position = size / -2
+	# 	information_text.size = size
+	# else:
+	# 	data.current_size = Vector2(data.item.item_size.x, data.item.item_size.y)
+	# 	texture = data.item.item_icon
+	# 	information_text.rotation_degrees = -90
+	# 	information_text.size = Vector2(size.x, size.y)
+	# 	information_text.position = Vector2(size.y / -2, size.x)
+	#
+	# anchor_point = global_position - size / 2
