@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://8s8pou7t8888"]
+
+[ext_resource type="Texture2D" uid="uid://c2u336bug73h0" path="res://test.png" id="1_1qn1e"]
+[ext_resource type="Script" uid="uid://bp8htypelaj1f" path="res://scripts/inventory/container_item_slot.gd" id="1_bw507"]
+
+[node name="container_item_slot" type="Sprite2D" node_paths=PackedStringArray("information_text")]
+z_index = 270
+texture = ExtResource("1_1qn1e")
+script = ExtResource("1_bw507")
+information_text = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -64.0
+offset_right = -32.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "guh"
+horizontal_alignment = 2
+vertical_alignment = 2
+autowrap_mode = 2
