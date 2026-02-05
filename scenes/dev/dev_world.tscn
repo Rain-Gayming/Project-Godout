@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://bqtsjd3dqqbox"]
+[gd_scene load_steps=23 format=3 uid="uid://bqtsjd3dqqbox"]
 
 [ext_resource type="Script" uid="uid://bptpnocn21ms4" path="res://scripts/player/player_movement.gd" id="1_5neua"]
 [ext_resource type="Script" uid="uid://dbc1eo4wpci63" path="res://scripts/camera/camera.gd" id="1_bkev0"]
 [ext_resource type="Script" uid="uid://5nvkiv04op2r" path="res://scripts/player/weapon_holder.gd" id="1_ep40k"]
 [ext_resource type="PackedScene" uid="uid://xksk8qn3xsfs" path="res://scenes/dev/dev_gun.tscn" id="1_yjf0v"]
 [ext_resource type="Script" uid="uid://c6y0f8otbypep" path="res://scripts/weapons/recoil.gd" id="3_scnqt"]
+[ext_resource type="PackedScene" uid="uid://bhkpaju4oj223" path="res://scenes/character_fps_rifle.tscn" id="5_t0420"]
 [ext_resource type="Script" uid="uid://dbnc0c23udtqi" path="res://scripts/interaction/interact_talk.gd" id="6_bkev0"]
 [ext_resource type="Resource" uid="uid://do0rxeovfwpyd" path="res://resources/dialogue/untitled.dialogue" id="7_t0420"]
 
@@ -126,7 +127,7 @@ interaction_raycast = NodePath("InteractionRaycast")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006888911, -0.15433025, -0.44580078)
 
 [node name="Hip Point" type="Marker3D" parent="Player/CameraHolder/Camera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16963555, -0.18508625, -0.62142944)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0328611, -0.18508625, -0.62142944)
 
 [node name="Weapon Holder" type="Node3D" parent="Player/CameraHolder/Camera" node_paths=PackedStringArray("aim_position", "hip_position", "recoil", "wall_raycast", "pull_raycast")]
 transform = Transform3D(0.9998477, 0, 0.017452406, 0, 1, 0, -0.017452406, 0, 0.9998477, 0.185, -0.155, -0.745)
@@ -141,7 +142,7 @@ wall_raycast = NodePath("Rotation Raycast")
 pull_raycast = NodePath("Pull Raycast")
 
 [node name="Dev Gun" parent="Player/CameraHolder/Camera/Weapon Holder" node_paths=PackedStringArray("weapon_holder") instance=ExtResource("1_yjf0v")]
-transform = Transform3D(-4.284084e-08, 0, -1, 0, 1, 0, 1, 0, -4.284084e-08, 0, 0, 0)
+transform = Transform3D(-0.20302981, 0.057985667, -0.9774544, 0.25476572, 0.9669927, 0.0044469396, 0.9454491, -0.24811897, -0.21110104, 0.22049785, -0.28510475, 0.0037994385)
 weapon_holder = NodePath("..")
 
 [node name="Recoil" type="Node" parent="Player/CameraHolder/Camera/Weapon Holder"]
@@ -160,6 +161,9 @@ target_position = Vector3(0, 0, -2.145)
 [node name="Pull Raycast" type="RayCast3D" parent="Player/CameraHolder/Camera/Weapon Holder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018106088, 0.021526814, 0.30205512)
 target_position = Vector3(0, -0.605, 0)
+
+[node name="character_fps_rifle" parent="Player/CameraHolder/Camera/Weapon Holder" instance=ExtResource("5_t0420")]
+transform = Transform3D(-1.6372443, 0, 0.43869844, 0, 1.695, 0, -0.43869844, 0, -1.6372443, -0.452, -3.183, 0.932)
 
 [node name="InteractionRaycast" type="RayCast3D" parent="Player/CameraHolder/Camera"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.4353485)

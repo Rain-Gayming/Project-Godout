@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="project-godout"
-run/main_scene="uid://bqvgoa7yebacy"
+run/main_scene="uid://bqtsjd3dqqbox"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]

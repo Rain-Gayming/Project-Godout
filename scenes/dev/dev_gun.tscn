@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://xksk8qn3xsfs"]
+[gd_scene load_steps=13 format=3 uid="uid://xksk8qn3xsfs"]
 
 [ext_resource type="Script" uid="uid://besglfwefep8j" path="res://scripts/weapons/gun.gd" id="1_t52eb"]
 [ext_resource type="PackedScene" uid="uid://mxtrp2wcavxs" path="res://scenes/dev/dev_bullet.tscn" id="2_k2o87"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://cvm46jjye1eoc" path="res://shaders/pip_shader.gdshader" id="5_d618e"]
 [ext_resource type="Texture2D" uid="uid://c2u336bug73h0" path="res://test.png" id="6_ljg8s"]
 [ext_resource type="Material" uid="uid://cgpfd51p6ww6" path="res://assets/materials/sm_colour_palette.tres" id="7_ljg8s"]
+[ext_resource type="PackedScene" uid="uid://bp681j23xydq1" path="res://scenes/m4a1.tscn" id="9_vkkeb"]
 [ext_resource type="ArrayMesh" uid="uid://ba38mco5mei4g" path="res://assets/models/weapons/rifles/model_weapon_m4a1.obj" id="10_seada"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ljg8s"]
@@ -72,8 +73,12 @@ wait_time = 2.5
 
 [node name="M4a1" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.152582e-08, 0, -0.95, 0, 0.95, 0, 0.95, 0, -4.152582e-08, 0.047747582, -0.34374884, 0.004781425)
+visible = false
 material_override = ExtResource("7_ljg8s")
 mesh = ExtResource("10_seada")
+
+[node name="m4a1" parent="." instance=ExtResource("9_vkkeb")]
+transform = Transform3D(-7.4090806e-08, -1.695, -7.4090806e-08, 0, -7.4090806e-08, 1.695, -1.695, 7.4090806e-08, 3.238612e-15, 0.030357897, -0.1488309, -0.0031393766)
 
 [connection signal="timeout" from="Timers/AmmoCheckTimer" to="." method="_ammo_check_timer_timeout"]
 [connection signal="timeout" from="Timers/AmmoCheckDelayTimer" to="." method="_ammo_check_timer_delay_timeout"]
