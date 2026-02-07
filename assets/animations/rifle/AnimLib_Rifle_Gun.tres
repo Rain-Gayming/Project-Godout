@@ -1,0 +1,26 @@
+[gd_resource type="AnimationLibrary" format=3 uid="uid://c2uh1pnuvjeiv"]
+
+[ext_resource type="Animation" uid="uid://bsehri6y4x34s" path="res://assets/animations/rifle/Anim_Rifle_GUN_Fire.anim" id="1_7mbq8"]
+[ext_resource type="Animation" uid="uid://c7t6v4unq55qb" path="res://assets/animations/rifle/Anim_Rifle_GUN_Idle.anim" id="2_rn178"]
+[ext_resource type="Animation" uid="uid://cy8q4a80m6l6l" path="res://assets/animations/rifle/Anim_Rifle_GUN_Idle_Lowered_Full.anim" id="3_gipnv"]
+[ext_resource type="Animation" uid="uid://bw61ao6caxysy" path="res://assets/animations/rifle/Anim_Rifle_GUN_Idle_Lowered_Partial.anim" id="4_3jmva"]
+[ext_resource type="Animation" uid="uid://rviavk6qky5j" path="res://assets/animations/rifle/Anim_Rifle_GUN_Reload_Empty.anim" id="5_2gl22"]
+[ext_resource type="Animation" uid="uid://bg0cn4is6lf2j" path="res://assets/animations/rifle/Anim_Rifle_GUN_Reload_Partial.anim" id="6_imd2p"]
+[ext_resource type="Animation" uid="uid://bgfs2gargb71m" path="res://assets/animations/rifle/Anim_Rifle_GUN_Unjam.anim" id="7_kxc4f"]
+[ext_resource type="Animation" uid="uid://dh8ns1b5k6klr" path="res://assets/animations/rifle/Anim_Rifle_GUN_Walk.anim" id="8_4umrq"]
+[ext_resource type="Animation" uid="uid://c58koamt082a3" path="res://assets/animations/rifle/Anim_Rifle_GUN_Walk_Lowered_Full.anim" id="9_pq3eu"]
+[ext_resource type="Animation" uid="uid://cqnrmi7atig7u" path="res://assets/animations/rifle/Anim_Rifle_GUN_Walk_Lowered_Partial.anim" id="10_0yshl"]
+
+[resource]
+_data = {
+&"Anim_Rifle_GUN_Fire": ExtResource("1_7mbq8"),
+&"Anim_Rifle_GUN_Idle": ExtResource("2_rn178"),
+&"Anim_Rifle_GUN_Idle_Lowered_Full": ExtResource("3_gipnv"),
+&"Anim_Rifle_GUN_Idle_Lowered_Partial": ExtResource("4_3jmva"),
+&"Anim_Rifle_GUN_Reload_Empty": ExtResource("5_2gl22"),
+&"Anim_Rifle_GUN_Reload_Partial": ExtResource("6_imd2p"),
+&"Anim_Rifle_GUN_Unjam": ExtResource("7_kxc4f"),
+&"Anim_Rifle_GUN_Walk": ExtResource("8_4umrq"),
+&"Anim_Rifle_GUN_Walk_Lowered_Full": ExtResource("9_pq3eu"),
+&"Anim_Rifle_GUN_Walk_Lowered_Partial": ExtResource("10_0yshl")
+}

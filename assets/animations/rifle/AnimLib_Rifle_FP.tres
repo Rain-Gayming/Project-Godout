@@ -1,0 +1,28 @@
+[gd_resource type="AnimationLibrary" format=3 uid="uid://5hrn5guxo0th"]
+
+[ext_resource type="Animation" uid="uid://dj72hbdmofq7l" path="res://assets/animations/rifle/Anim_Rifle_FP_Fire.anim" id="1_03ow8"]
+[ext_resource type="Animation" uid="uid://dkuqond4xf0tq" path="res://assets/animations/rifle/Anim_Rifle_FP_Idle.anim" id="2_1wm8d"]
+[ext_resource type="Animation" uid="uid://b2faliof2sexj" path="res://assets/animations/rifle/Anim_Rifle_FP_Idle_Lowered_Full.anim" id="3_55w0n"]
+[ext_resource type="Animation" uid="uid://gpji8u05qi6e" path="res://assets/animations/rifle/Anim_Rifle_FP_Reload_Empty.anim" id="4_j50it"]
+[ext_resource type="Animation" uid="uid://ccmtfgm3oiiyi" path="res://assets/animations/rifle/Anim_Rifle_FP_Reload_Partial.anim" id="5_e5b6r"]
+[ext_resource type="Animation" uid="uid://flnrnmmuux2f" path="res://assets/animations/rifle/Anim_Rifle_FP_Shoot.anim" id="6_6dx6r"]
+[ext_resource type="Animation" uid="uid://c1crch4sd0yrq" path="res://assets/animations/rifle/Anim_Rifle_FP_Unjam.anim" id="7_4y1p1"]
+[ext_resource type="Animation" uid="uid://6iqh3wqnmref" path="res://assets/animations/rifle/Anim_Rifle_FP_Walk.anim" id="8_87ljs"]
+[ext_resource type="Animation" uid="uid://o81tq76u1bch" path="res://assets/animations/rifle/Anim_Rifle_FP_Walk_Lowered_Full.anim" id="9_1wm8d"]
+[ext_resource type="Animation" uid="uid://c458u5aiaam5n" path="res://assets/animations/rifle/Anim_Rifle_FP_Idle_Lowered_Partial.anim" id="10_55w0n"]
+[ext_resource type="Animation" uid="uid://ba8uwf2purq8o" path="res://assets/animations/rifle/Anim_Rifle_FP_Walk_Lowered_Partial.anim" id="11_55w0n"]
+
+[resource]
+_data = {
+&"Anim_Rifle_FP_Fire": ExtResource("1_03ow8"),
+&"Anim_Rifle_FP_Idle": ExtResource("2_1wm8d"),
+&"Anim_Rifle_FP_Idle_Lowered_Full": ExtResource("3_55w0n"),
+&"Anim_Rifle_FP_Idle_Lowered_Partial": ExtResource("10_55w0n"),
+&"Anim_Rifle_FP_Reload_Empty": ExtResource("4_j50it"),
+&"Anim_Rifle_FP_Reload_Partial": ExtResource("5_e5b6r"),
+&"Anim_Rifle_FP_Shoot": ExtResource("6_6dx6r"),
+&"Anim_Rifle_FP_Unjam": ExtResource("7_4y1p1"),
+&"Anim_Rifle_FP_Walk": ExtResource("8_87ljs"),
+&"Anim_Rifle_FP_Walk_Lowered_Full": ExtResource("9_1wm8d"),
+&"Anim_Rifle_FP_Walk_Lowered_Partial": ExtResource("11_55w0n")
+}

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cyn1gire32ela"]
+
+[ext_resource type="Script" uid="uid://0o7gmrydowu4" path="res://scripts/weapons/bullet.gd" id="1_yg5fv"]
+[ext_resource type="PackedScene" uid="uid://cwooxjjr7uvh0" path="res://scenes/ammo/ammo_556x45mm_bullet.tscn" id="2_hvb3h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6kdqr"]
+size = Vector3(0.21972656, 0.053710938, 0.099609375)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6kdqr"]
+radius = 0.030273438
+height = 0.18408203
+
+[node name="Ammo556x45mmFired" type="RigidBody3D" unique_id=692154172]
+disable_mode = 2
+mass = 0.05
+continuous_cd = true
+contact_monitor = true
+script = ExtResource("1_yg5fv")
+
+[node name="Collider" type="CollisionShape3D" parent="." unique_id=385960288]
+shape = SubResource("BoxShape3D_6kdqr")
+disabled = true
+
+[node name="Hit Box" type="Area3D" parent="." unique_id=873256411]
+
+[node name="Hit Collider" type="CollisionShape3D" parent="Hit Box" unique_id=10026585]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.010498047, 4.588842e-10, 0)
+shape = SubResource("CapsuleShape3D_6kdqr")
+
+[node name="Bullet" parent="." unique_id=1320318884 instance=ExtResource("2_hvb3h")]
+transform = Transform3D(-1.5748339e-09, -0.03602792, 0, 0.036028, -1.5748304e-09, 0, 0, 0, 0.036028, 0.18104078, 0, 0)
+
+[connection signal="body_entered" from="Hit Box" to="." method="_hit_box_detection"]

@@ -11,12 +11,25 @@ extends Node
 
 @export var can_shoot: bool = true
 @export var checking_ammo: bool = false
+@export var is_reloading: bool = false
+@export var shoot_delay_timer: Timer
 
 @export var ammo_type: String = "5.56x45mm"
 @export var ammo_amount: int = 30
 @export var magazine_capacity: int = 30
 
+@export_group("Casing")
+@export var casing_scene: PackedScene
+@export var casing_point: Marker3D
+
+@export_group("Jamming")
 @export var is_jammed: bool = false
+@export var unjamming_timer: Timer
+
+@export_group("Animators")
+@export var body_animation_tree: AnimationTree
+@export var weapon_animation_tree: AnimationTree
+
 @export_group("Timers")
 @export_group("Timers/Reload")
 @export var reload_timer: Timer
@@ -24,6 +37,10 @@ extends Node
 @export var ammo_check_timer: Timer
 @export var ammo_check_delay_timer: Timer
 @export var ammo_check_fade_timer: Timer
+
+
+func _ready():
+	weapon_animation_tree.animation_finished.connect(_on_tree_animation_finished)
 
 
 func _process(_delta):
@@ -36,36 +53,85 @@ func _process(_delta):
 	if Input.is_action_just_pressed("ammo_check"):
 		ammo_check()
 	elif Input.is_action_just_pressed("combat_reload"):
+		is_reloading = true
+		weapon_animation_tree.set("parameters/StateMachine/conditions/is_reloading", true)
+		body_animation_tree.set("parameters/StateMachine/conditions/is_reloading", true)
+		if ammo_amount > 0:
+			print("partial")
+			weapon_animation_tree.set("parameters/StateMachine/ReloadBlend/blend_position", 1.0)
+			body_animation_tree.set("parameters/StateMachine/ReloadBlend/blend_position", 1.0)
+			reload_timer.wait_time = 1.8
+		else:
+			print("full")
+			weapon_animation_tree.set("parameters/StateMachine/ReloadBlend/blend_position", 0.0)
+			body_animation_tree.set("parameters/StateMachine/ReloadBlend/blend_position", 0.0)
+			reload_timer.wait_time = 4.0
+
 		reload_timer.start()
+
+	if Input.is_action_just_pressed("combat_pull_charge"):
+		weapon_animation_tree.set("parameters/StateMachine/conditions/is_unjamming", true)
+		body_animation_tree.set("parameters/StateMachine/conditions/is_unjamming", true)
+		unjamming_timer.start()
 
 	if Input.is_action_just_pressed("combat_aim"):
 		if pip_scope != null:
 			pip_scope.visible = !pip_scope.visible
 
 
+func _on_tree_animation_finished(name: String):
+	if name.contains("Unjam"):
+		weapon_animation_tree.set("parameters/StateMachine/conditions/is_unjamming", false)
+		body_animation_tree.set("parameters/StateMachine/conditions/is_unjamming", false)
+
+	print("Animation finished")
+
+
 func shoot():
 	if !can_shoot:
-		if checking_ammo:
-			checking_ammo = false
-			ammo_check_delay_timer.stop()
-			ammo_check_timer.stop()
-			ammo_check_fade_timer.stop()
-			GameUi.hide_ammo_check()
-			return
-
-	if ammo_amount <= 0:
+		print("Can't shoot")
 		return
 
-	if reload_timer.time_left > 0:
+	if ammo_amount <= 0:
+		print("No ammo")
+		return
+
+	if is_reloading:
+		print("Reloading")
 		return
 
 	if is_jammed:
+		print("Jammed")
 		return
 
+	if checking_ammo:
+		print("Checking ammo")
+		checking_ammo = false
+		ammo_check_delay_timer.stop()
+		ammo_check_timer.stop()
+		ammo_check_fade_timer.stop()
+		return
+
+	# animation
+	weapon_animation_tree.set(
+		"parameters/Firing/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	)
+	body_animation_tree.set(
+		"parameters/Firing/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	)
+
+	# bullet spawning
 	var bullet = bullet_scene.instantiate()
 	bullet.global_transform = muzzle_point.global_transform
 	get_tree().get_root().add_child(bullet)
 
+	# casing spawning
+	var casing = casing_scene.instantiate()
+	casing.global_transform = casing_point.global_transform
+	get_tree().get_root().add_child(casing)
+	casing.fire(5.0)
+
+	# bullet velocity
 	var final_velocity = (
 		(bullet_info.base_velocity * bullet_info.weight)
 		* (gun_info.barrel_length)
@@ -75,11 +141,10 @@ func shoot():
 	bullet.bullet_info = bullet_info
 	weapon_holder.shoot()
 	bullet.fire(final_velocity)
-	ammo_amount -= 1
 
+	# weapon jamming
 	var base_jam_rate = 2.0
 	var bullet_impact = (100 - bullet_info.bullet_condition) / 100 * 3.0
-
 	var receiver_impact = (100 - gun_info.receiver_condition) / 100 * 1.5
 	var barrel_impact = (100 - gun_info.barrel_condition) / 100 * 0.8
 	var jam_chance = (
@@ -89,6 +154,12 @@ func shoot():
 	print(jam_chance)
 	if randf_range(0, 100) < jam_chance:
 		is_jammed = true
+		print("Jammed")
+
+	# shoot timing
+	ammo_amount -= 1
+	can_shoot = false
+	shoot_delay_timer.start()
 
 
 func ammo_check():
@@ -97,7 +168,6 @@ func ammo_check():
 	ammo_check_delay_timer.start()
 	ammo_check_fade_timer.start()
 	checking_ammo = true
-	can_shoot = false
 
 
 func _ammo_check_timer_delay_timeout() -> void:
@@ -110,8 +180,6 @@ func _ammo_check_fade_timer_timeout() -> void:
 
 
 func _ammo_check_timer_timeout() -> void:
-	can_shoot = true
-	checking_ammo = false
 	ammo_check_timer.stop()
 
 
@@ -135,8 +203,26 @@ func calculate_ammo_amount():
 
 
 func _on_reload_timer_timeout() -> void:
-	if is_jammed:
-		is_jammed = false
-		return
+	is_reloading = false
 	ammo_amount = magazine_capacity
+	weapon_animation_tree.set("parameters/StateMachine/conditions/is_reloading", false)
+	weapon_animation_tree.set("parameters/StateMachine/ReloadBlend/blend_position", 0.0)
+
+	body_animation_tree.set("parameters/StateMachine/conditions/is_reloading", false)
+	body_animation_tree.set("parameters/StateMachine/ReloadBlend/blend_position", 0.0)
+
 	reload_timer.stop()
+
+
+func _on_unjam_timer_timeout() -> void:
+	is_jammed = false
+	weapon_animation_tree.set("parameters/StateMachine/conditions/is_unjamming", false)
+	body_animation_tree.set("parameters/StateMachine/conditions/is_unjamming", false)
+	if ammo_amount > 0:
+		ammo_amount -= 1
+	unjamming_timer.stop()
+
+
+func _on_shoot_delay_timer_timeout() -> void:
+	can_shoot = true
+	shoot_delay_timer.stop()

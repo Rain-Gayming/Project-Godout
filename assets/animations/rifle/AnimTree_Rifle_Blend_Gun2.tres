@@ -1,0 +1,120 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://c6aumvpfwqehs"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aduqw"]
+animation = &"AnimLib_Rifle_FP/Anim_Rifle_FP_Fire"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_oruiq"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ky3ur"]
+animation = &"AnimLib_Rifle_FP/Anim_Rifle_FP_Fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fcfcn"]
+animation = &"AnimLib_Rifle_FP/Anim_Rifle_FP_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kbxac"]
+animation = &"AnimLib_Rifle_FP/Anim_Rifle_FP_Idle_Lowered_Partial"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ey1gk"]
+animation = &"AnimLib_Rifle_FP/Anim_Rifle_FP_Idle_Lowered_Full"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uowc6"]
+animation = &"AnimLib_Rifle_Gun/Anim_Rifle_GUN_Idle_Lowered_Full"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vyo13"]
+animation = &"AnimLib_Rifle_FP/Anim_Rifle_FP_Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3ica7"]
+animation = &"AnimLib_Rifle_FP/Anim_Rifle_FP_Walk_Lowered_Partial"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_543at"]
+animation = &"AnimLib_Rifle_FP/Anim_Rifle_FP_Walk_Lowered_Full"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b4n2a"]
+animation = &"AnimLib_Rifle_Gun/Anim_Rifle_GUN_Idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_aduqw"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_fcfcn")
+blend_point_0/pos = Vector2(-1, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_kbxac")
+blend_point_1/pos = Vector2(-0.5, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_ey1gk")
+blend_point_2/pos = Vector2(0, -1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_uowc6")
+blend_point_3/pos = Vector2(0, -1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_vyo13")
+blend_point_4/pos = Vector2(-1, 0)
+blend_point_5/node = SubResource("AnimationNodeAnimation_3ica7")
+blend_point_5/pos = Vector2(-0.5, 0)
+blend_point_6/node = SubResource("AnimationNodeAnimation_543at")
+blend_point_6/pos = Vector2(0, 0)
+blend_point_7/node = SubResource("AnimationNodeAnimation_b4n2a")
+blend_point_7/pos = Vector2(-1, -1)
+x_label = "Safety"
+y_label = "Movement"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oruiq"]
+animation = &"AnimLib_Rifle_FP/Anim_Rifle_FP_Reload_Empty"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bd4fs"]
+animation = &"AnimLib_Rifle_FP/Anim_Rifle_FP_Reload_Partial"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_4ll1l"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_oruiq")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_bd4fs")
+blend_point_1/pos = 1.0
+min_space = 0.0
+value_label = "AmmoPercentage"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dfdlp"]
+animation = &"AnimLib_Rifle_FP/Anim_Rifle_FP_Unjam"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ky3ur"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kbxac"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f8beb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uowc6"]
+advance_mode = 2
+advance_condition = &"is_reloading"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vyo13"]
+advance_mode = 2
+advance_condition = &"is_unjamming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fcfcn"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3ica7"]
+states/Fire/node = SubResource("AnimationNodeAnimation_ky3ur")
+states/Fire/position = Vector2(572, 82)
+states/IdleWalkBlend/node = SubResource("AnimationNodeBlendSpace2D_aduqw")
+states/IdleWalkBlend/position = Vector2(386, 82)
+states/ReloadBlend/node = SubResource("AnimationNodeBlendSpace1D_4ll1l")
+states/ReloadBlend/position = Vector2(386, 2)
+states/Start/position = Vector2(171, 82)
+states/Unjam/node = SubResource("AnimationNodeAnimation_dfdlp")
+states/Unjam/position = Vector2(386, 187)
+transitions = ["ReloadBlend", "IdleWalkBlend", SubResource("AnimationNodeStateMachineTransition_ky3ur"), "Unjam", "IdleWalkBlend", SubResource("AnimationNodeStateMachineTransition_kbxac"), "Start", "IdleWalkBlend", SubResource("AnimationNodeStateMachineTransition_f8beb"), "IdleWalkBlend", "ReloadBlend", SubResource("AnimationNodeStateMachineTransition_uowc6"), "IdleWalkBlend", "Unjam", SubResource("AnimationNodeStateMachineTransition_vyo13"), "Fire", "IdleWalkBlend", SubResource("AnimationNodeStateMachineTransition_fcfcn")]
+graph_offset = Vector2(-235, -87)
+
+[resource]
+graph_offset = Vector2(-482.5431, 369.74475)
+nodes/output/position = Vector2(760, 380)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_3ica7")
+nodes/StateMachine/position = Vector2(-60, 420)
+nodes/Firing/node = SubResource("AnimationNodeOneShot_oruiq")
+nodes/Firing/position = Vector2(420, 380)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_aduqw")
+nodes/Animation/position = Vector2(-60, 820)
+node_connections = [&"output", 0, &"Firing", &"Firing", 0, &"StateMachine", &"Firing", 1, &"Animation"]

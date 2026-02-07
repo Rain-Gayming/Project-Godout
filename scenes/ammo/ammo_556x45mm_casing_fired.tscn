@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ujcct8k4jlh2"]
+
+[ext_resource type="PackedScene" uid="uid://dr0n2kt2qh30m" path="res://scenes/ammo/ammo_556x45mm_casing.tscn" id="1_4peva"]
+[ext_resource type="Script" uid="uid://d17pku8nqbmb2" path="res://scripts/weapons/casing.gd" id="1_rh2qk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4peva"]
+radius = 0.068847656
+height = 0.28125
+
+[node name="Ammo556x45MmCasingFired" type="RigidBody3D" unique_id=2063249478]
+script = ExtResource("1_rh2qk")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1416608016]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+
+[node name="Casing" parent="Node3D" unique_id=1412494342 instance=ExtResource("1_4peva")]
+transform = Transform3D(-7.8680495e-10, -0.018, 0, 0.018, -7.8680495e-10, 0, 0, 0, 0.018, -0.037017435, 0, -0.0016271472)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=506212078]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.03515625, 0.0011624708, 0)
+shape = SubResource("CapsuleShape3D_4peva")

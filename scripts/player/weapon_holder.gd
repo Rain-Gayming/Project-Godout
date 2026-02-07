@@ -1,6 +1,7 @@
 class_name WeaponHolder
 extends Node3D
 
+@export var weapon: Node
 @export_group("Aiming")
 @export var aiming: bool
 @export var aim_position: Marker3D
