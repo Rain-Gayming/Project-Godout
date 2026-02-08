@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://corij3y5uq7im"]
+
+[ext_resource type="Texture2D" uid="uid://c36lgk4bo035k" path="res://assets/effects/texture_effect_gun_fire.png" id="1_h8o4p"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_h8o4p")
+disable_receive_shadows = true

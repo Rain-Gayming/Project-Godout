@@ -26,6 +26,11 @@ extends Node
 @export var is_jammed: bool = false
 @export var unjamming_timer: Timer
 
+@export_group("Bullet Flash")
+@export var bullet_flash_light: OmniLight3D
+@export var bullet_flash_timer: Timer
+@export var bullet_flash: Node
+
 @export_group("Animators")
 @export var body_animation_tree: AnimationTree
 @export var weapon_animation_tree: AnimationTree
@@ -161,6 +166,11 @@ func shoot():
 	can_shoot = false
 	shoot_delay_timer.start()
 
+	bullet_flash_light.visible = true
+	bullet_flash.visible = true
+	bullet_flash.rotation.x = randf_range(0.0, 360.0)
+	bullet_flash_timer.start()
+
 
 func ammo_check():
 	print("Checking ammo")
@@ -226,3 +236,9 @@ func _on_unjam_timer_timeout() -> void:
 func _on_shoot_delay_timer_timeout() -> void:
 	can_shoot = true
 	shoot_delay_timer.stop()
+
+
+func _on_bullet_flash_timer_timeout() -> void:
+	bullet_flash_light.visible = false
+	bullet_flash.visible = false
+	bullet_flash_timer.stop()
