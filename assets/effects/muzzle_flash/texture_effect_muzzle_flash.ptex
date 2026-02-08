@@ -1,0 +1,137 @@
+{
+	"connections": [
+		{
+			"from": "box",
+			"from_port": 0,
+			"to": "invert",
+			"to_port": 0
+		},
+		{
+			"from": "invert",
+			"from_port": 0,
+			"to": "tiler",
+			"to_port": 1
+		},
+		{
+			"from": "shape",
+			"from_port": 0,
+			"to": "tiler",
+			"to_port": 0
+		}
+	],
+	"label": "Graph",
+	"longdesc": "",
+	"name": "@Node@817",
+	"node_position": {
+		"x": 0.0,
+		"y": 0.0
+	},
+	"nodes": [
+		{
+			"export_paths": {
+
+			},
+			"name": "Material",
+			"node_position": {
+				"x": 176.0,
+				"y": -41.0
+			},
+			"parameters": {
+				"albedo_color": {
+					"a": 1.0,
+					"b": 1.0,
+					"g": 1.0,
+					"r": 1.0,
+					"type": "Color"
+				},
+				"ao": 1.0,
+				"depth_scale": 0.5,
+				"emission_energy": 1.0,
+				"flags_transparent": true,
+				"metallic": 0.0,
+				"normal": 1.0,
+				"roughness": 1.0,
+				"size": 11,
+				"sss": 1.0
+			},
+			"seed_int": 0,
+			"type": "material"
+		},
+		{
+			"name": "box",
+			"node_position": {
+				"x": -869.469970703125,
+				"y": 102.680000305176
+			},
+			"parameters": {
+				"cx": 0.5,
+				"cy": 0.5,
+				"cz": 0.5,
+				"rx": 0.0,
+				"ry": 0.0,
+				"rz": 0.0,
+				"sx": 0.22,
+				"sy": 0.4,
+				"sz": 0.5
+			},
+			"seed_int": 0,
+			"type": "box"
+		},
+		{
+			"name": "invert",
+			"node_position": {
+				"x": -674.660034179688,
+				"y": 95.4199981689453
+			},
+			"parameters": {
+
+			},
+			"seed_int": 0,
+			"type": "invert"
+		},
+		{
+			"name": "tiler",
+			"node_position": {
+				"x": -370.950012207031,
+				"y": 11.9299926757812
+			},
+			"parameters": {
+				"fixed_offset": 0.0,
+				"inputs": 0.0,
+				"offset": 0.75,
+				"overlap": 2.0,
+				"rotate": 50.0,
+				"scale": 0.3,
+				"scale_x": 0.2,
+				"scale_y": 0.4,
+				"tx": 8.0,
+				"ty": 8.0,
+				"value": 1.0,
+				"variations": false
+			},
+			"seed_int": 0,
+			"type": "tiler"
+		},
+		{
+			"name": "shape",
+			"node_position": {
+				"x": -712.170043945312,
+				"y": -65.510009765625
+			},
+			"parameters": {
+				"edge": 0.2,
+				"radius": 0.9,
+				"shape": 0.0,
+				"sides": 2.0
+			},
+			"seed_int": 0,
+			"type": "shape"
+		}
+	],
+	"parameters": {
+
+	},
+	"seed_int": 0,
+	"shortdesc": "",
+	"type": "graph"
+}

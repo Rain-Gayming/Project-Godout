@@ -62,6 +62,8 @@ extends Node3D
 @export var pull_back: Vector3
 @export var current_pull_back: Vector3 = Vector3.ZERO
 
+var move_blend_y = -1.0
+
 
 func _ready():
 	initial_position = hip_position.position
@@ -78,6 +80,16 @@ func _process(delta):
 	else:
 		aiming = false
 		initial_position = lerp(initial_position, hip_position.position, 0.1)
+
+	if velocity.x == 0.0 and velocity.z == 0.0:
+		print("not moving")
+		move_blend_y = max(move_blend_y - delta * 2.5, -1.0)
+	else:
+		print("moving")
+		move_blend_y = min(move_blend_y + delta * 2.5, 0.0)
+
+	weapon.body_animation_tree["parameters/StateMachine/IdleWalkBlend/blend_position"].y = move_blend_y
+	weapon.weapon_animation_tree["parameters/StateMachine/IdleWalkBlend/blend_position"].y = move_blend_y
 
 	calculate_sway(delta)
 	detect_wall(delta)

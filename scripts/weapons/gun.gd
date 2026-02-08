@@ -25,11 +25,19 @@ extends Node
 @export_group("Jamming")
 @export var is_jammed: bool = false
 @export var unjamming_timer: Timer
+@export var unjamming_eject_timer: Timer
 
 @export_group("Bullet Flash")
 @export var bullet_flash_light: OmniLight3D
 @export var bullet_flash_timer: Timer
-@export var bullet_flash: Node
+@export var bullet_flash_plane: GPUParticles3D
+@export var bullet_flash_cone: GPUParticles3D
+
+@export_group("Audio")
+@export var reload_sound: AudioStreamPlayer3D
+@export var shoot_sound: AudioStreamPlayer3D
+@export var tick_sound: AudioStreamPlayer3D
+@export var dry_fire_sound: AudioStreamPlayer3D
 
 @export_group("Animators")
 @export var body_animation_tree: AnimationTree
@@ -78,6 +86,7 @@ func _process(_delta):
 		weapon_animation_tree.set("parameters/StateMachine/conditions/is_unjamming", true)
 		body_animation_tree.set("parameters/StateMachine/conditions/is_unjamming", true)
 		unjamming_timer.start()
+		unjamming_eject_timer.start()
 
 	if Input.is_action_just_pressed("combat_aim"):
 		if pip_scope != null:
@@ -99,6 +108,8 @@ func shoot():
 
 	if ammo_amount <= 0:
 		print("No ammo")
+		dry_fire_sound.play()
+		shoot_delay_timer.start()
 		return
 
 	if is_reloading:
@@ -107,6 +118,8 @@ func shoot():
 
 	if is_jammed:
 		print("Jammed")
+		if !tick_sound.playing:
+			tick_sound.play()
 		return
 
 	if checking_ammo:
@@ -131,10 +144,7 @@ func shoot():
 	get_tree().get_root().add_child(bullet)
 
 	# casing spawning
-	var casing = casing_scene.instantiate()
-	casing.global_transform = casing_point.global_transform
-	get_tree().get_root().add_child(casing)
-	casing.fire(5.0)
+	spawn_casing()
 
 	# bullet velocity
 	var final_velocity = (
@@ -166,9 +176,17 @@ func shoot():
 	can_shoot = false
 	shoot_delay_timer.start()
 
+	shoot_sound.play()
+
 	bullet_flash_light.visible = true
-	bullet_flash.visible = true
-	bullet_flash.rotation.x = randf_range(0.0, 360.0)
+
+	bullet_flash_cone.restart(false)
+	bullet_flash_plane.restart(false)
+
+	bullet_flash_cone.emitting = true
+	bullet_flash_plane.emitting = true
+
+	# bullet_flash.rotation.x = randf_range(0.0, 360.0)
 	bullet_flash_timer.start()
 
 
@@ -178,6 +196,13 @@ func ammo_check():
 	ammo_check_delay_timer.start()
 	ammo_check_fade_timer.start()
 	checking_ammo = true
+
+
+func spawn_casing():
+	var casing = casing_scene.instantiate()
+	casing.global_transform = casing_point.global_transform
+	get_tree().get_root().add_child(casing)
+	casing.fire(5.0)
 
 
 func _ammo_check_timer_delay_timeout() -> void:
@@ -228,9 +253,14 @@ func _on_unjam_timer_timeout() -> void:
 	is_jammed = false
 	weapon_animation_tree.set("parameters/StateMachine/conditions/is_unjamming", false)
 	body_animation_tree.set("parameters/StateMachine/conditions/is_unjamming", false)
+	unjamming_timer.stop()
+
+
+func _on_unjam_eject_timer_timeout() -> void:
+	unjamming_eject_timer.stop()
 	if ammo_amount > 0:
 		ammo_amount -= 1
-	unjamming_timer.stop()
+		spawn_casing()
 
 
 func _on_shoot_delay_timer_timeout() -> void:
@@ -240,5 +270,6 @@ func _on_shoot_delay_timer_timeout() -> void:
 
 func _on_bullet_flash_timer_timeout() -> void:
 	bullet_flash_light.visible = false
-	bullet_flash.visible = false
+	bullet_flash_cone.emitting = false
+	bullet_flash_plane.emitting = false
 	bullet_flash_timer.stop()

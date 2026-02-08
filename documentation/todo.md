@@ -2,7 +2,7 @@
 
 ## Items 
 
-- [ ] Add base item 
+- [x] Add base item [finished: 8th febuary 2026]
 - [ ] Add consumable item
 - [ ] Add durability item
 	- [ ] Add weapon items 
@@ -23,6 +23,11 @@
 - [ ] Add weapon spread
 - [x] Add gun jamming [finished: 2nd febuary 2026]
 - [ ] Add weapon pull back (wall detection)
+
+- [ ] Add muzzle flash
+    - [x] Add effect [finished: 8th febuary 2026]
+    - [x] Add lighting [finished: 8th febuary 2026]
+    - [ ] Add bullet trail 
 
 - [ ] Add ammo swapping
 
@@ -53,6 +58,12 @@
 - [ ] Add footsteps
 - [ ] Add jumping and landing sounds
 - [ ] Add weapon sounds
+    - [x] Add gun firing [finished: 8th febuary 2026]
+    - [x] Add gun jamming [finished: 8th febuary 2026] 
+    - [x] Add empty magazine [finished: 8th febuary 2026]
+    - [ ] Add weapon recoil
+    - [ ] Add weapon rattle 
+    - [ ] Add weapon reloading
 
 # UI
 
@@ -71,8 +82,8 @@
 
 ## Weapons
 
-- [ ] Add weapon models
-
+- [x] Add weapon models [finished: 8th febuary 2026]
+- [x] Add bullet models [finished: 8th febuary 2026]
 
 # Misc
 

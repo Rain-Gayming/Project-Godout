@@ -11,3 +11,11 @@ func lock_mouse():
 func unlock_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	cursor_locked = false
+
+
+func _process(_delta):
+	if Input.is_action_just_pressed("game_pause"):
+		if cursor_locked:
+			unlock_mouse()
+		else:
+			lock_mouse()
