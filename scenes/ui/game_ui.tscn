@@ -1,22 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://c511xy8q5wc0v"]
+[gd_scene format=3 uid="uid://c511xy8q5wc0v"]
 
 [ext_resource type="Script" uid="uid://m617110lcvm0" path="res://scripts/ui/game_ui_manager.gd" id="1_xjfbv"]
 [ext_resource type="PackedScene" uid="uid://7ffhab8l7j8l" path="res://scenes/ui/weapon/ui_ammo_check.tscn" id="2_bma8u"]
 [ext_resource type="Script" uid="uid://62aqa74vutms" path="res://scripts/ui/debug/debug_display.gd" id="4_fct72"]
 [ext_resource type="Texture2D" uid="uid://e817cmpufarn" path="res://assets/sprites/ui/ui_hitmarker.png" id="5_ru5ln"]
 
-[node name="Game UI" type="CanvasLayer" node_paths=PackedStringArray("ammo_check", "hitmarker")]
+[node name="Game UI" type="CanvasLayer" unique_id=1037921252 node_paths=PackedStringArray("ammo_check", "hitmarker")]
 script = ExtResource("1_xjfbv")
 ammo_check = NodePath("UiAmmoCheck")
 hitmarker = NodePath("UiHitmarker")
 
-[node name="UiAmmoCheck" parent="." instance=ExtResource("2_bma8u")]
+[node name="UiAmmoCheck" parent="." unique_id=1977164701 instance=ExtResource("2_bma8u")]
 modulate = Color(1, 1, 1, 0)
 offset_left = 2.0
 offset_right = 2.0
 mouse_filter = 2
 
-[node name="UiDebugCrossheir" type="Control" parent="."]
+[node name="UiDebugCrossheir" type="Control" parent="." unique_id=2055035387]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,7 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="UiDebugCrossheir"]
+[node name="ColorRect" type="ColorRect" parent="UiDebugCrossheir" unique_id=405491066]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -40,7 +40,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 1, 0, 1)
 
-[node name="Debug" type="Control" parent="." node_paths=PackedStringArray("fps_label")]
+[node name="Debug" type="Control" parent="." unique_id=371208821 node_paths=PackedStringArray("fps_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,13 +51,13 @@ mouse_filter = 2
 script = ExtResource("4_fct72")
 fps_label = NodePath("FPSLabel")
 
-[node name="ColorRect" type="ColorRect" parent="Debug"]
+[node name="ColorRect" type="ColorRect" parent="Debug" unique_id=810551174]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 40.0
 color = Color(0.41215247, 0.41215247, 0.41215247, 1)
 
-[node name="FPSLabel" type="Label" parent="Debug"]
+[node name="FPSLabel" type="Label" parent="Debug" unique_id=1470928898]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 7.0
@@ -65,7 +65,7 @@ offset_right = 94.0
 offset_bottom = 30.0
 text = "FPS: 155000"
 
-[node name="UiHitmarker" type="Control" parent="."]
+[node name="UiHitmarker" type="Control" parent="." unique_id=2110077790]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,7 +74,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="UiHitmarker"]
+[node name="TextureRect" type="TextureRect" parent="UiHitmarker" unique_id=750358478]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

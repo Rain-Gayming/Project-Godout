@@ -76,16 +76,14 @@ func _process(delta):
 	if Input.is_action_just_pressed("combat_aim"):
 		aiming = !aiming
 	if aiming:
-		initial_position = lerp(initial_position, aim_position.position, 0.1)
+		initial_position = lerp(initial_position, aim_position.position, delta * 10)
 	else:
 		aiming = false
-		initial_position = lerp(initial_position, hip_position.position, 0.1)
+		initial_position = lerp(initial_position, hip_position.position, delta * 10)
 
 	if velocity.x == 0.0 and velocity.z == 0.0:
-		print("not moving")
 		move_blend_y = max(move_blend_y - delta * 2.5, -1.0)
 	else:
-		print("moving")
 		move_blend_y = min(move_blend_y + delta * 2.5, 0.0)
 
 	weapon.body_animation_tree["parameters/StateMachine/IdleWalkBlend/blend_position"].y = move_blend_y

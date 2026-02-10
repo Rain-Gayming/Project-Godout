@@ -8,6 +8,7 @@ radius = 0.068847656
 height = 0.28125
 
 [node name="Ammo556x45MmCasingFired" type="RigidBody3D" unique_id=2063249478]
+collision_layer = 4
 script = ExtResource("1_rh2qk")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1416608016]
