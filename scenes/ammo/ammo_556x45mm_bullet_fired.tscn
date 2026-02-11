@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cyn1gire32ela"]
 
 [ext_resource type="Script" uid="uid://0o7gmrydowu4" path="res://scripts/weapons/bullet.gd" id="1_yg5fv"]
+[ext_resource type="PackedScene" uid="uid://cf5k1pyx74cmt" path="res://assets/effects/bullet_trail/scene_effect_bullet_tracer.tscn" id="2_7jh4l"]
 [ext_resource type="PackedScene" uid="uid://cwooxjjr7uvh0" path="res://scenes/ammo/ammo_556x45mm_bullet.tscn" id="2_hvb3h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6kdqr"]
@@ -20,6 +21,9 @@ script = ExtResource("1_yg5fv")
 [node name="Collider" type="CollisionShape3D" parent="." unique_id=385960288]
 shape = SubResource("BoxShape3D_6kdqr")
 disabled = true
+
+[node name="SceneEffectBulletTracer" parent="Collider" unique_id=91372093 instance=ExtResource("2_7jh4l")]
+transform = Transform3D(-7.914908e-08, 0, -0.99999994, 0, 1.8236012, 0, 1.81072, 0, -4.3711385e-08, 0, 0, 0)
 
 [node name="Hit Box" type="Area3D" parent="." unique_id=873256411]
 

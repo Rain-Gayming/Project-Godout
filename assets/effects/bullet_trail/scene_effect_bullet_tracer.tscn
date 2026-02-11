@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cf5k1pyx74cmt"]
+
+[ext_resource type="Material" uid="uid://c784vmo5stcbd" path="res://assets/effects/bullet_trail/mat_effect_bullet_tracer_orange.tres" id="1_royp2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nmcn8"]
+
+[node name="SceneEffectBulletTracer" type="Node3D" unique_id=91372093]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1205360598]
+transform = Transform3D(7.323728e-17, -4.9722263e-07, 0.026043124, -0.03833037, -4.9722263e-07, 0, 1.6754738e-09, -11.375127, -1.1383811e-09, 0, 0, -5.722541)
+material_override = ExtResource("1_royp2")
+mesh = SubResource("BoxMesh_nmcn8")

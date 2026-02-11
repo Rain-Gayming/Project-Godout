@@ -2,8 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://5s25vab3tqlu" path="res://assets/textures/terrain/grass2/grass2_diffuse.jpg" id="1_25ove"]
 [ext_resource type="Texture2D" uid="uid://cxyxflus04lap" path="res://assets/textures/terrain/snowy dirt/snow_dirt_diffuse.jpg" id="1_d5ioe"]
-[ext_resource type="Texture2D" uid="uid://c706kwvdmhjl2" path="res://assets/textures/terrain/snow/snow_diffuse.jpg" id="1_xldsc"]
-[ext_resource type="Texture2D" uid="uid://c2ll64hif3i6o" path="res://assets/textures/terrain/snow/snow_normal.jpg" id="2_wi3ad"]
 
 [sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_ameg4"]
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
@@ -157,36 +155,7 @@ source = 5
 texture = ExtResource("1_d5ioe")
 texture_type = 1
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_d5ioe"]
-output_port_for_preview = 0
-texture = ExtResource("1_xldsc")
-texture_type = 1
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_25ove"]
-texture = ExtResource("2_wi3ad")
-texture_type = 2
-
-[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_xldsc"]
-function = 1
-
-[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_wi3ad"]
-constant = 4.0
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_xldsc"]
-input_name = "uv"
-
 [resource]
-nodes/vertex/2/node = SubResource("VisualShaderNodeTexture_d5ioe")
-nodes/vertex/2/position = Vector2(-120, 220)
-nodes/vertex/3/node = SubResource("VisualShaderNodeTexture_25ove")
-nodes/vertex/3/position = Vector2(-150.46, 555.15)
-nodes/vertex/4/node = SubResource("VisualShaderNodeUVFunc_xldsc")
-nodes/vertex/4/position = Vector2(-640, 260)
-nodes/vertex/5/node = SubResource("VisualShaderNodeFloatConstant_wi3ad")
-nodes/vertex/5/position = Vector2(-920, 460)
-nodes/vertex/6/node = SubResource("VisualShaderNodeInput_xldsc")
-nodes/vertex/6/position = Vector2(-820, 560)
-nodes/vertex/connections = PackedInt32Array(5, 0, 4, 1, 2, 0, 0, 6, 6, 0, 4, 0, 4, 0, 2, 0)
 nodes/fragment/0/position = Vector2(1760, 180)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_xldsc")
 nodes/fragment/2/position = Vector2(-580, 260)
