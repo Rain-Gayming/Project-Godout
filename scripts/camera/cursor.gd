@@ -4,7 +4,7 @@ var cursor_locked: bool = false
 
 
 func lock_mouse():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	cursor_locked = true
 
 
