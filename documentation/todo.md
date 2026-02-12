@@ -24,10 +24,10 @@
 - [x] Add gun jamming [finished: 2nd febuary 2026]
 - [ ] Add weapon pull back (wall detection)
 
-- [ ] Add muzzle flash
+- [x] Add muzzle flash
     - [x] Add effect [finished: 8th febuary 2026]
     - [x] Add lighting [finished: 8th febuary 2026]
-    - [ ] Add bullet trail 
+    - [x] Add bullet trail 
 
 - [ ] Add ammo swapping
 

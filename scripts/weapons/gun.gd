@@ -67,20 +67,21 @@ func _process(_delta):
 		ammo_check()
 	elif Input.is_action_just_pressed("combat_reload"):
 		is_reloading = true
-		weapon_animation_tree.set("parameters/StateMachine/conditions/is_reloading", true)
-		body_animation_tree.set("parameters/StateMachine/conditions/is_reloading", true)
-		if ammo_amount > 0:
-			print("partial")
-			weapon_animation_tree.set("parameters/StateMachine/ReloadBlend/blend_position", 1.0)
-			body_animation_tree.set("parameters/StateMachine/ReloadBlend/blend_position", 1.0)
-			reload_timer.wait_time = 1.8
-		else:
-			print("full")
-			weapon_animation_tree.set("parameters/StateMachine/ReloadBlend/blend_position", 0.0)
-			body_animation_tree.set("parameters/StateMachine/ReloadBlend/blend_position", 0.0)
-			reload_timer.wait_time = 4.0
+		if !body_animation_tree["parameters/StateMachine/conditions/is_reloading"] == true:
+			weapon_animation_tree.set("parameters/StateMachine/conditions/is_reloading", true)
+			body_animation_tree.set("parameters/StateMachine/conditions/is_reloading", true)
+			if ammo_amount > 0:
+				print("partial")
+				weapon_animation_tree.set("parameters/StateMachine/ReloadBlend/blend_position", 1.0)
+				body_animation_tree.set("parameters/StateMachine/ReloadBlend/blend_position", 1.0)
+				reload_timer.wait_time = 1.8
+			else:
+				print("full")
+				weapon_animation_tree.set("parameters/StateMachine/ReloadBlend/blend_position", 0.0)
+				body_animation_tree.set("parameters/StateMachine/ReloadBlend/blend_position", 0.0)
+				reload_timer.wait_time = 4.0
 
-		reload_timer.start()
+			reload_timer.start()
 
 	if Input.is_action_just_pressed("combat_pull_charge"):
 		weapon_animation_tree.set("parameters/StateMachine/conditions/is_unjamming", true)
@@ -166,7 +167,6 @@ func shoot():
 		base_jam_rate * (1 + bullet_impact) * (1 + receiver_impact) * (1 + barrel_impact)
 	)
 
-	print(jam_chance)
 	if randf_range(0, 100) < jam_chance:
 		is_jammed = true
 		print("Jammed")

@@ -1,6 +1,7 @@
 class_name PlayerMovement
 extends Node
 
+@export_group("References")
 @export var character_body: CharacterBody3D
 @export var head: Node3D
 @export var camera: Camera3D

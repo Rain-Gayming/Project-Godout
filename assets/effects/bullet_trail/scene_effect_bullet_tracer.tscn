@@ -7,6 +7,7 @@
 [node name="SceneEffectBulletTracer" type="Node3D" unique_id=91372093]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1205360598]
-transform = Transform3D(7.323728e-17, -4.9722263e-07, 0.026043124, -0.03833037, -4.9722263e-07, 0, 1.6754738e-09, -11.375127, -1.1383811e-09, 0, 0, -5.722541)
+transform = Transform3D(1.1365209e-16, -2.7433725e-07, 0.0718924, -0.059482366, -2.7433725e-07, 0, 2.6000568e-09, -6.2761045, -3.1425167e-09, 0, 0, -3.1225405)
+visible = false
 material_override = ExtResource("1_royp2")
 mesh = SubResource("BoxMesh_nmcn8")

@@ -22,6 +22,7 @@ func _physics_process(delta):
 
 	if result:
 		var collider: Node = result.collider
+		print(collider.name)
 		if collider.name != "Player":
 			if collider.has_method("hit"):
 				collider.hit(bullet_info.damage)
